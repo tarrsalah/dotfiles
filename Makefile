@@ -8,7 +8,7 @@ prepare:
 	sudo apt-add-repository ppa:git-core/ppa
 	sudo add-apt-repository ppa:ubuntu-elisp/ppa
 	sudo apt update
-	sudo apt install zsh git emacs-snapshot
+	sudo apt install tmux zsh git emacs-snapshot
 
 .PHONY: install
 install:
