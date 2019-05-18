@@ -496,3 +496,8 @@ setq initial-scratch-message ""
 
 ;; set font size
 (set-face-attribute 'default nil :family "FiraCode" :height 110)
+
+
+ ;; custom file   
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
