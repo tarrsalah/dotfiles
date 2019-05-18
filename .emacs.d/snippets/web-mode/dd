@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: dd
+# key: dd
+# --
+var_dump($0);die();

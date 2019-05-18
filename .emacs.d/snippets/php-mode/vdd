@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: PHP var_dump and die function
+# key: vdd
+# --
+var_dump($1);die();
