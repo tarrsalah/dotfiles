@@ -358,9 +358,7 @@ setq initial-scratch-message ""
   	        phpunit-program "~/.config/composer/vendor/bin/phpunit")
     (warn "Can't find composer bin directory, some tools might not work"))
 
-  (setq flycheck-phpcs-standard "PSR2")
-  (setq php-mode-coding-style (quote psr2))
-  (setq php-style-delete-trailing-whitespace 1))
+  (setq flycheck-phpcs-standard "PSR2"))
 
 (use-package php-cs-fixer
   :ensure t)
