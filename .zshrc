@@ -211,3 +211,8 @@ export PATH="$PATH:$HOME/.yarn/bin"
 # Go
 export GOPATH=$HOME/local/go
 export PATH="$PATH:$GOPATH/bin"
+
+
+#Compose
+export COMPOSER="$HOME/.config/composer"
+export PATH="$PATH:$COMPOSER/vendor/bin"
