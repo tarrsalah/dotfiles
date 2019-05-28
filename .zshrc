@@ -109,7 +109,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions git nvm docker docker-compose)
+plugins=(git nvm docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -209,8 +209,9 @@ eval "$(rbenv init -)"
 export PATH="$PATH:$HOME/.yarn/bin"
 
 # Go
-export GOPATH=$HOME/local/go
+export GOPATH=$HOME
 export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$HOME/local/go/bin"
 
 
 #Compose
