@@ -75,15 +75,8 @@ setq initial-scratch-message ""
 ;;; use-package
 (require 'use-package)
 
-
 ;; theme
-(setq custom-safe-themes t)
-(use-package color-theme-sanityinc-tomorrow
-  :ensure t
-  :config
-  (load-theme 'sanityinc-tomorrow-night))
-
-
+(load-theme 'professional)
 ;; ido
 (require 'ido)
 (ido-mode)
