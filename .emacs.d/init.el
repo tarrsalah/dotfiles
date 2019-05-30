@@ -19,6 +19,15 @@
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
 
+;;; global key bindings
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+(global-set-key (kbd "C-;") 'comment-or-uncomment-region)
+(global-set-key (kbd "<escape>") (kbd "C-g"))
+(global-set-key (kbd "C-x r r") 'rgrep)
+(global-set-key (kbd "C-x r f") 'grep-find)
+
+
 ;;; misc settings
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -470,12 +479,6 @@ setq initial-scratch-message ""
 
 (use-package rainbow-delimiters
   :ensure t)
-
-;;; key bindings
-(global-set-key (kbd "C-+") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "C-;") 'comment-or-uncomment-region)
-(global-set-key (kbd "<escape>") (kbd "C-g"))
 
 (setq browse-url-browser-function 'browse-url-generic
       browse-url-generic-program "google-chrome")
