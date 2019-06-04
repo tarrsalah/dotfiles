@@ -36,7 +36,7 @@
 (global-hl-line-mode 1)
 (menu-bar-mode 0)
 (global-auto-revert-mode)
-
+(set-window-margins nil 1)
 (electric-pair-mode 1)
 (electric-indent-mode 1)
 (global-linum-mode t)
@@ -85,7 +85,7 @@ setq initial-scratch-message ""
 (require 'use-package)
 
 ;; theme
-(load-theme 'professional)
+(load-theme 'professional t)
 ;; ido
 (require 'ido)
 (ido-mode)
@@ -98,6 +98,8 @@ setq initial-scratch-message ""
   :ensure t
   :config
   (progn
+    (flx-ido-mode 1)
+    (setq ido-use-faces nil)
     (setq ido-enable-flex-matching t)
     (setq ido-enable-prefix t)
     (setq ido-enable-flex-matching t)))
@@ -109,11 +111,6 @@ setq initial-scratch-message ""
 
 ;; magit integration
 (setq magit-completing-read-function #'magit-ido-completing-read)
-
-;; flx-ido
-(require 'flx-ido)
-(flx-ido-mode 1)
-(setq ido-use-faces nil)
 
 ;;; dired
 (add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
@@ -147,7 +144,6 @@ setq initial-scratch-message ""
 (use-package ibuffer
   :bind (("C-x C-b" . ibuffer)))
 
-
 ;;; expand region
 (use-package expand-region
   :ensure t
@@ -168,30 +164,6 @@ setq initial-scratch-message ""
     (setq company-begin-commands '(self-insert-command)))
   :bind (("C-n" . company-complete)))
 
-;; paredit
-(use-package paredit
-  :ensure t)
-
-
-;; projectile
-(use-package projectile
-  :ensure t
-  :config
-  (progn
-    (projectile-mode +1)
-    (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-    (add-to-list
-     'projectile-globally-ignored-directories "dist")
-    (add-to-list
-     'projectile-globally-ignored-directories ".db")
-    (add-to-list
-     'projectile-globally-ignored-directories "./.db")
-    (add-to-list
-     'projectile-globally-ignored-directories "vendor")
-    (add-to-list
-     'projectile-globally-ignored-directories "node_modules")))
-
 ;; flycheck
 (use-package flycheck
   :diminish flycheck-mode
@@ -209,28 +181,12 @@ setq initial-scratch-message ""
   :config
   (global-set-key (kbd "C-x o") 'ace-window))
 
-
-(use-package highlight-indentation
-  :ensure t)
-(set-face-background 'highlight-indentation-current-column-face "#666")
-(highlight-indentation-mode 1)
-
-;; ace-jumb-mode
-(use-package ace-jump-mode
-  :ensure t
-  :bind ("C-." . ace-jump-mode))
-
 ;; exec-path-from-shell
 (use-package exec-path-from-shell
   :ensure t
   :config
   (exec-path-from-shell-initialize))
 
-;; org-mode
-(use-package toc-org
-  :ensure t
-  :config
-  (add-hook 'org-mode-hook 'toc-org-enable))
 
 ;; javascript
 (use-package js2-mode
@@ -357,7 +313,7 @@ setq initial-scratch-message ""
   (if
       (file-exists-p "~/.config/composer/vendor/bin" )
       (setq flycheck-php-phpcs-executable "~/.config/composer/vendor/bin/phpcs"
-  	        phpunit-program "~/.config/composer/vendor/bin/phpunit")
+            phpunit-program "~/.config/composer/vendor/bin/phpunit")
     (warn "Can't find composer bin directory, some tools might not work"))
 
   (setq flycheck-phpcs-standard "PSR2"))
@@ -401,17 +357,8 @@ setq initial-scratch-message ""
 (autoload 'reftex-citation "reftex-cite" "Make citation" nil)
 (autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
 
-;; drupal 7
-(add-to-list 'auto-mode-alist '("\\.info\\'" . conf-mode))
-(add-to-list 'auto-mode-alist '("\\.module\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.inc\\'" . web-mode))
-(add-to-list 'auto-mode-alist '("\\.install\\'" . web-mode))
-
 ;; docker
 (use-package dockerfile-mode
-  :ensure t)
-
-(use-package restclient
   :ensure t)
 
 ;; nginx
@@ -463,8 +410,7 @@ setq initial-scratch-message ""
 ;; dump-jump
 (use-package dumb-jump
   :ensure
-  :bind (("C-x j" . dumb-jump-go)
-         ("M-g j" . dumb-jump-go-prompt)))
+  :bind (("C-x j" . dumb-jump-go)))
 
 (use-package less-css-mode
   :ensure t)
@@ -472,24 +418,13 @@ setq initial-scratch-message ""
 (use-package yaml-mode
   :ensure t)
 
-(use-package rainbow-mode
-  :ensure t
-  :config
-  (add-hook 'css-mode-hook  (lambda () (rainbow-mode 1))))
-
-(use-package rainbow-delimiters
-  :ensure t)
-
-(setq browse-url-browser-function 'browse-url-generic
-      browse-url-generic-program "google-chrome")
-
 ;;; trun of debugging
 (setq debug-on-error nil)
 (setq debug-on-quit nil)
 (setq ring-bell-function 'ignore)
 
 ;; set font size
-(set-face-attribute 'default nil :family "FiraCode" :height 110)
+(set-face-attribute 'default nil :family "FiraCode" :height 100)
 
 
  ;; custom file   
