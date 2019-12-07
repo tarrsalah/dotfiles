@@ -1,4 +1,4 @@
-;; turn on debugging
+;;; Code:
 (setq debug-on-error t)
 (setq debug-on-quit t)
 
@@ -275,17 +275,10 @@ setq initial-scratch-message ""
     (venv-initialize-interactive-shells)
     (venv-initialize-eshell)))
 
-(use-package company-jedi
-  :ensure t
-  :config
-  (progn
-    (jedi:setup)
-    (add-to-list 'company-backends 'company-jedi)))
-
 ;; golang
 (use-package go-mode
   :ensure t
-  :config 
+  :config
   ( progn
     (add-hook 'before-save-hook 'gofmt-before-save)))
 
@@ -438,7 +431,6 @@ setq initial-scratch-message ""
 (set-face-attribute 'default nil :family "FiraCode" :height 120)
 
 
- ;; custom file   
+;; custom file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
-(put 'upcase-region 'disabled nil)
