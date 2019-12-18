@@ -87,7 +87,7 @@ setq initial-scratch-message ""
     (if (and (not (or (equal f ".") (equal f "..")))
              (file-directory-p (concat basedir f)))
         (add-to-list 'custom-theme-load-path (concat basedir f)))))
-(load-theme 'acme t)
+(load-theme 'space t)
 
 ;; (global-font-lock-mode -1)
 ;; (set-background-color "#111")
