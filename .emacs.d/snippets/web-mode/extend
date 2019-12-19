@@ -1,8 +1,0 @@
-# -*- mode: snippet -*-
-# name : extend
-# --
-@extends('layouts.master')
-
-@section('content')
-  $0
-@endsection

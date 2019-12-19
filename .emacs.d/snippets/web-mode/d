@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: d
-# key: d
-# --
-var_dump($0);

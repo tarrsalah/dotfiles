@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: PHP print backtrace and die
+# key: dp
+# --
+debug_print_backtrace(); die();

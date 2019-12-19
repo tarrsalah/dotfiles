@@ -1,7 +1,0 @@
-# -*- mode: snippet -*-
-# name: Symfony Route annotation
-# key: sroute
-# --
-/**
- * @Route("$1", name="$2")
- */
