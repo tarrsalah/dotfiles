@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: xdebug print stack
+# key: xps
+# --
+xdebug_print_function_stack(); die();
