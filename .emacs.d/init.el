@@ -1,4 +1,3 @@
-;;; Code:
 (setq debug-on-error t)
 (setq debug-on-quit t)
 
@@ -134,7 +133,7 @@ setq initial-scratch-message ""
 (add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
 
 (setq dired-omit-mode t)
-(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|\\tmp$\\|__pycache__")
+(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|\\tmp$\\|__pycache__|\\.php_cs.cache$")
 
 (dolist (p '(use-package auctex))
   (when (not (package-installed-p p))
@@ -167,6 +166,20 @@ setq initial-scratch-message ""
   :ensure t
   :bind (("C-=" . er/expand-region)))
 
+;;; lsp-mode
+(use-package lsp-mode
+  :ensure t
+  :commands (lsp lsp-deferred)
+  :hook (go-mode . lsp-deferred))
+
+;;; lsp-ui
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode
+  :config (progn
+            (setq lsp-ui-sideline-enable nil)
+            (setq lsp-ui-doc-enable nil)))
+
 ;; company
 (use-package company
   :ensure t
@@ -177,10 +190,16 @@ setq initial-scratch-message ""
   (progn
     (setq company-tooltip-limit 10)
     (setq company-idle-delay 1)
-    (setq company-dabbrev-downcase nil)
     (setq company-echo-delay 0)
     (setq company-begin-commands '(self-insert-command)))
   :bind (("C-n" . company-complete)))
+
+
+;; company-lsp
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp)
+
 
 ;; flycheck
 (use-package flycheck
@@ -277,23 +296,18 @@ setq initial-scratch-message ""
 
 ;; golang
 (use-package go-mode
-  :ensure t
-  :config
-  ( progn
-    (add-hook 'before-save-hook 'gofmt-before-save)))
-
-(use-package company-go
-  :ensure t
-  :config
-  (progn
-    (add-hook
-     'go-mode-hook
-     (lambda ()
-       (set (make-local-variable 'company-backends) '(company-go))
-       (company-mode)))))
-
-(use-package go-rename
   :ensure t)
+
+;; go hooks
+(defun lsp-go-install-save-hooks ()
+  "Install save hooks."
+  (add-hook 'before-save-hook #'lsp-format-buffer t t)
+  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
+
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp)
 
 ;; web-mode
 (use-package web-mode
