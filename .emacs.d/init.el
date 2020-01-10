@@ -170,7 +170,10 @@ setq initial-scratch-message ""
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
-  :hook (go-mode . lsp-deferred))
+  :hook (go-mode . lsp-deferred)
+  :config
+  (progn
+    (setq lsp-prefer-flymake nil)))
 
 ;;; lsp-ui
 (use-package lsp-ui
@@ -199,7 +202,6 @@ setq initial-scratch-message ""
 (use-package company-lsp
   :ensure t
   :commands company-lsp)
-
 
 ;; flycheck
 (use-package flycheck
@@ -304,10 +306,6 @@ setq initial-scratch-message ""
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
   (add-hook 'before-save-hook #'lsp-organize-imports t t))
 (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
-
-(use-package company-lsp
-  :ensure t
-  :commands company-lsp)
 
 ;; web-mode
 (use-package web-mode
