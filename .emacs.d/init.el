@@ -133,7 +133,7 @@ setq initial-scratch-message ""
 (add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
 
 (setq dired-omit-mode t)
-(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|\\tmp$\\|__pycache__|\\.php_cs.cache$")
+(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|__pycache__|\\.php_cs.cache$")
 
 (dolist (p '(use-package auctex))
   (when (not (package-installed-p p))
@@ -170,9 +170,12 @@ setq initial-scratch-message ""
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
+  :hook (php-mode . lsp)
   :hook (go-mode . lsp-deferred)
   :config
   (progn
+    (setq lsp-enable-file-watchers t)
+    (setq lsp-file-watch-threshold 40000)
     (setq lsp-prefer-flymake nil)))
 
 ;;; lsp-ui
@@ -296,6 +299,19 @@ setq initial-scratch-message ""
     (venv-initialize-interactive-shells)
     (venv-initialize-eshell)))
 
+
+;; php
+(use-package php-mode
+  :ensure t
+  :mode (("\\.php\\'" . php-mode))
+  :init
+  (if
+      (file-exists-p "~/.config/composer/vendor/bin" )
+      (setq flycheck-php-phpcs-executable "~/.config/composer/vendor/bin/phpcs")
+    (warn "Can't find composer bin directory, some tools might not work"))
+  (setq flycheck-phpcs-standard "PSR2"))
+
+
 ;; golang
 (use-package go-mode
   :ensure t)
@@ -317,7 +333,6 @@ setq initial-scratch-message ""
     (setq web-mode-enable-auto-pairing nil)
     (setq web-mode-css-indent-offset 4)
     (setq web-mode-code-indent-offset 4)
-    (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
