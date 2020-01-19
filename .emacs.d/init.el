@@ -435,12 +435,9 @@ setq initial-scratch-message ""
   :bind (("C-x j" . dumb-jump-go)))
 
 
-;; gpg
-(use-package epg
-  :ensure
-  :config
-  (progn
-    (setq epg-gpg-program "gpg2")))
+;; pass
+(use-package pass
+  :ensure t)
 
 (use-package yaml-mode
   :ensure t)
