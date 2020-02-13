@@ -1,0 +1,9 @@
+[user]
+	email = tarrsalah@gmail.com
+	name = tarrsalah
+[push]
+	default = current
+[core]
+	excludesfile = /home/tarrsalah/.gitignore_global
+[includeIf "gitdir:~/src/emploitic/**"]
+    path = .gitconfig_emploitic
