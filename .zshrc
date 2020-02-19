@@ -23,3 +23,6 @@ export GOPATH=$HOME
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$HOME/local/go/bin"
 export GO111MODULE="on"
+
+# Symfony
+export PATH="$HOME/.symfony/bin:$PATH"
