@@ -26,3 +26,9 @@ export GO111MODULE="on"
 
 # Symfony
 export PATH="$HOME/.symfony/bin:$PATH"
+
+# Docker
+dkclean () {
+    docker stop $(docker ps -qa)
+    docker system prune
+}
