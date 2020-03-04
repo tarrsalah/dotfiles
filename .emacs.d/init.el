@@ -83,7 +83,7 @@ setq initial-scratch-message ""
     (if (and (not (or (equal f ".") (equal f "..")))
              (file-directory-p (concat basedir f)))
         (add-to-list 'custom-theme-load-path (concat basedir f)))))
-(load-theme 'space t)
+(load-theme 'acme t)
 
 ;; (global-font-lock-mode -1)
 ;; (set-background-color "#111")
@@ -167,7 +167,6 @@ setq initial-scratch-message ""
 (use-package lsp-mode
   :ensure t
   :commands (lsp lsp-deferred)
-  :hook (php-mode . lsp)
   :hook (go-mode . lsp-deferred)
   :config
   (progn
@@ -296,19 +295,6 @@ setq initial-scratch-message ""
     (venv-initialize-interactive-shells)
     (venv-initialize-eshell)))
 
-
-;; php
-(use-package php-mode
-  :ensure t
-  :mode (("\\.php\\'" . php-mode))
-  :init
-  (if
-      (file-exists-p "~/.config/composer/vendor/bin" )
-      (setq flycheck-php-phpcs-executable "~/.config/composer/vendor/bin/phpcs")
-    (warn "Can't find composer bin directory, some tools might not work"))
-  (setq flycheck-phpcs-standard "PSR2"))
-
-
 ;; golang
 (use-package go-mode
   :ensure t)
@@ -328,14 +314,27 @@ setq initial-scratch-message ""
     (electric-pair-mode 1)
     (setq web-mode-markup-indent-offset 4)
     (setq web-mode-enable-auto-pairing nil)
+    (setq web-mode-enable-auto-indentation nil)
     (setq web-mode-css-indent-offset 4)
     (setq web-mode-code-indent-offset 4)
+    (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.blade.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.tpl.php\\'" . web-mode))))
+
+;; php
+(use-package php-mode
+  :ensure t
+  :mode (("\\.php\\'" . php-mode))
+  :init
+  (if
+      (file-exists-p "~/.config/composer/vendor/bin" )
+      (setq flycheck-php-phpcs-executable "~/.config/composer/vendor/bin/phpcs")
+    (warn "Can't find composer bin directory, some tools might not work"))
+  (setq flycheck-phpcs-standard "PSR2"))
 
 (use-package php-cs-fixer
   :ensure t)
@@ -445,7 +444,7 @@ setq initial-scratch-message ""
 (setq ring-bell-function 'ignore)
 
 ;; set font size
-(set-face-attribute 'default nil :family "FiraCode" :height 120)
+(set-face-attribute 'default nil :family "FiraCode" :height 110)
 
 
 ;; custom file
