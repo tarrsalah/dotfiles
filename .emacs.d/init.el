@@ -444,7 +444,7 @@ setq initial-scratch-message ""
 (setq ring-bell-function 'ignore)
 
 ;; set font size
-(set-face-attribute 'default nil :family "FiraCode" :height 110)
+(set-face-attribute 'default nil :family "FiraCode" :height 120)
 
 
 ;; custom file
