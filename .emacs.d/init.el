@@ -439,8 +439,12 @@ setq initial-scratch-message ""
 (use-package pass
   :ensure t)
 
+;; yaml
 (use-package yaml-mode
-  :ensure t)
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.yaml.dist\\'" . yaml-mode))))
 
 ;;; trun of debugging
 (setq debug-on-error nil)
