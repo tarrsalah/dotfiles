@@ -130,9 +130,10 @@ setq initial-scratch-message ""
 
 ;;; dired
 (add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
-
 (setq dired-omit-mode t)
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|__pycache__|\\.php_cs.cache$")
+(setq dired-listing-switches
+      "-lX --group-directories-first")
 
 (dolist (p '(use-package auctex))
   (when (not (package-installed-p p))
