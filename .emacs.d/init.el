@@ -91,6 +91,8 @@ setq initial-scratch-message ""
 ;; (set-face-attribute 'region nil :background "#ccc" :foreground "#111")
 ;; (set-face-background 'hl-line "#333")
 
+(define-coding-system-alias 'UTF-8 'utf-8)
+
 (use-package projectile
   :ensure t
   :config
