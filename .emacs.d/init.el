@@ -133,7 +133,7 @@ setq initial-scratch-message ""
 (setq dired-omit-mode t)
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|__pycache__|\\.php_cs.cache$")
 (setq dired-listing-switches
-      "-lX --group-directories-first")
+      "-laX --group-directories-first")
 
 (dolist (p '(use-package auctex))
   (when (not (package-installed-p p))
