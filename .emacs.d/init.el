@@ -15,10 +15,6 @@
 (add-to-list 'package-archives
              '("org" . "http://orgmode.org/elpa/") t)
 
-(when (< emacs-major-version 23)
-  ;; For important compatibility libraries like cl-lib
-  (add-to-list 'package-archives '("gnu" . "https://elpa.gnu.org/packages/")))
-
 ;;; global key bindings
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
@@ -26,6 +22,7 @@
 (global-set-key (kbd "<escape>") (kbd "C-g"))
 (global-set-key (kbd "C-x r r") 'rgrep)
 (global-set-key (kbd "C-x r f") 'grep-find)
+(global-set-key (kbd "C-x x") 'eshell-command)
 
 
 ;;; misc settings
@@ -84,8 +81,29 @@ setq initial-scratch-message ""
 ;;; use-package
 (require 'use-package)
 
-;; theme
-(load-theme 'professional t)
+;; themes
+(let ((basedir "~/.emacs.d/themes/"))
+  (dolist (f (directory-files basedir))
+    (if (and (not (or (equal f ".") (equal f "..")))
+             (file-directory-p (concat basedir f)))
+        (add-to-list 'custom-theme-load-path (concat basedir f)))))
+(load-theme 'acme t)
+
+;; (global-font-lock-mode -1)
+;; (set-background-color "#111")
+;; (set-foreground-color "#ccc")
+;; (set-face-attribute 'region nil :background "#ccc" :foreground "#111")
+;; (set-face-background 'hl-line "#333")
+
+(use-package projectile
+  :ensure t
+  :config
+  (progn
+    (projectile-mode +1)
+    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+    (setq projectile-project-search-path '("~/src/repos.emploitic.com/emploitic/" "~/src/github.com/tarrsalah"))
+    (setq projectile-switch-project-action 'projectile-dired)))
+
 ;; ido
 (require 'ido)
 (ido-mode)
@@ -264,10 +282,6 @@ setq initial-scratch-message ""
     (jedi:setup)
     (add-to-list 'company-backends 'company-jedi)))
 
-;; geiser
-(use-package geiser
-  :ensure t)
-
 ;; golang
 (use-package go-mode
   :ensure t
@@ -412,9 +426,6 @@ setq initial-scratch-message ""
   :ensure
   :bind (("C-x j" . dumb-jump-go)))
 
-(use-package less-css-mode
-  :ensure t)
-
 (use-package yaml-mode
   :ensure t)
 
@@ -424,9 +435,10 @@ setq initial-scratch-message ""
 (setq ring-bell-function 'ignore)
 
 ;; set font size
-(set-face-attribute 'default nil :family "FiraCode" :height 100)
+(set-face-attribute 'default nil :family "FiraCode" :height 120)
 
 
  ;; custom file   
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
+(put 'upcase-region 'disabled nil)

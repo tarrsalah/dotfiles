@@ -4,6 +4,9 @@ ZSH_THEME="robbyrussell"
 plugins=(git nvm docker docker-compose)
 source $ZSH/oh-my-zsh.sh
 
+# pip3 bin
+export PATH="$PATH:$HOME/.local/bin"
+
 # NVM
 export NVM_DIR="${HOME}/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -19,8 +22,4 @@ export PATH="$PATH:$HOME/.yarn/bin"
 export GOPATH=$HOME
 export PATH="$PATH:$GOPATH/bin"
 export PATH="$PATH:$HOME/local/go/bin"
-
-
-# Compose
-export COMPOSER="$HOME/.config/composer"
-export PATH="$PATH:$COMPOSER/vendor/bin"
+export GO111MODULE="on"
