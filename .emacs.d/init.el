@@ -181,6 +181,9 @@ setq initial-scratch-message ""
     (setq lsp-file-watch-threshold 40000)
     (setq lsp-prefer-flymake nil)))
 
+(setq lsp-intelephense-files-exclude
+      ["**/.git/**" "**/.svn/**" "**/.hg/**" "**/CVS/**" "**/.DS_Store/**" "**/node_modules/**" "**/bower_components/**"])
+
 ;;; lsp-ui
 (use-package lsp-ui
   :ensure t
