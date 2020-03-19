@@ -60,6 +60,9 @@ setq initial-scratch-message ""
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 
+;; keep final newline
+(setq mode-require-final-newline t)
+
 ;; xml
 (setq
     nxml-child-indent 4
