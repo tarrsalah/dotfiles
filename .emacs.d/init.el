@@ -1,27 +1,7 @@
 (setq debug-on-error t)
 (setq debug-on-quit t)
 
-(setq package-enable-at-startup nil)
-
-(require 'package)
-
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-
-(add-to-list 'package-archives
-             '("org" . "http://orgmode.org/elpa/") t)
-
-;;; global key bindings
-(global-set-key (kbd "C-+") 'text-scale-increase)
-(global-set-key (kbd "C--") 'text-scale-decrease)
-(global-set-key (kbd "C-;") 'comment-or-uncomment-region)
-(global-set-key (kbd "<escape>") (kbd "C-g"))
-(global-set-key (kbd "C-x r r") 'rgrep)
-(global-set-key (kbd "C-x r f") 'grep-find)
-(global-set-key (kbd "C-x x") 'eshell-command)
-
-
-;;; misc settings
+;; global settings
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
 (show-paren-mode 1)
@@ -29,88 +9,71 @@
 (global-hl-line-mode 1)
 (menu-bar-mode 0)
 (global-auto-revert-mode)
-(set-window-margins nil 1)
+(set-window-margins nil 2)
 (electric-pair-mode 1)
 (electric-indent-mode 1)
 (global-linum-mode t)
-
-;; enable a key in dired
 (put 'dired-find-alternate-file 'disabled nil)
-
 (fset 'yes-or-no-p 'y-or-n-p)
-(
-setq initial-scratch-message ""
-      inhibit-startup-message t)
+(setq shift-select-mode t)
 
-;; from http://www.emacswiki.org/emacs/BackupDirectory#toc1
 (setq
  backup-by-copying t
  backup-directory-alist
  '(("." . "~/.saves"))
  delete-old-versions t
  kept-new-versions 6
- kept-old-versions 2
+ kept-old-versions 6
  version-control t)
 
-;; enable erace buffer
-(put 'erase-buffer 'disabled nil)
 
-;; 4 spaces for tab
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
-
-;; keep final newline
 (setq mode-require-final-newline t)
 
-;; xml
-(setq
-    nxml-child-indent 4
-    nxml-attribute-indent 4
-    nxml-slash-auto-complete-flag t)
-
-;; colorize the compilation buffer
-(require 'ansi-color)
-(defun colorize-compilation-buffer ()
-  (toggle-read-only)
-  (ansi-color-apply-on-region (point-min) (point-max))
-  (toggle-read-only))
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
-
-;;; use-package
-(require 'use-package)
-
-;; themes
-(let ((basedir "~/.emacs.d/themes/"))
-  (dolist (f (directory-files basedir))
-    (if (and (not (or (equal f ".") (equal f "..")))
-             (file-directory-p (concat basedir f)))
-        (add-to-list 'custom-theme-load-path (concat basedir f)))))
-(load-theme 'acme t)
-
-;; (global-font-lock-mode -1)
-;; (set-background-color "#111")
-;; (set-foreground-color "#ccc")
-;; (set-face-attribute 'region nil :background "#ccc" :foreground "#111")
-;; (set-face-background 'hl-line "#333")
+(setq initial-scratch-message ""
+      inhibit-startup-message t)
 
 (define-coding-system-alias 'UTF-8 'utf-8)
 
-(use-package projectile
-  :ensure t
-  :config
-  (progn
-    (projectile-mode +1)
-    (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-    (setq projectile-project-search-path '("~/src/repos.emploitic.com/emploitic/" "~/src/github.com/tarrsalah"))
-    (setq projectile-switch-project-action 'projectile-dired)))
+
+
+;;; global key bindings
+(global-set-key (kbd "C-x r r") 'rgrep)
+
+
+;; themes
+(load "~/.emacs.d/themes/emacs-acme-theme/acme-theme.el")
+(load-theme 'acme t)
+(set-face-attribute 'default nil :family "FiraCode" :height 110)
+
+
+;; packages
+(setq package-enable-at-startup nil)
+
+(require 'package)
+
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives
+             '("org" . "http://orgmode.org/elpa/") t)
+
+(package-initialize)
+
+(unless package-archive-contents
+  (package-refresh-contents))
+
+(package-install 'use-package)
+
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
 
 ;; ido
-(require 'ido)
-(ido-mode)
-(ido-everywhere)
 (setq ido-create-new-buffer 'always)
 (global-set-key (kbd "C-b") 'ido-switch-buffer)
+(ido-mode)
+(ido-everywhere)
 
 ;; ido flex
 (use-package flx-ido
@@ -123,42 +86,63 @@ setq initial-scratch-message ""
     (setq ido-enable-prefix t)
     (setq ido-enable-flex-matching t)))
 
+
 ;; ido-vertical-mode
 (use-package ido-vertical-mode
   :ensure t
   :config (ido-vertical-mode))
 
-;; magit integration
-(setq magit-completing-read-function #'magit-ido-completing-read)
+;; company
+(use-package company
+  :ensure t
+  :diminish company-mode
+  :init
+  (add-hook 'after-init-hook 'global-company-mode)
+  :config
+  (progn
+    (setq company-tooltip-limit 10)
+    (setq company-idle-delay 1)
+    (setq company-echo-delay 0)
+    (setq company-begin-commands '(self-insert-command)))
+  :bind (("C-n" . company-complete)))
 
-;;; dired
-(add-hook 'dired-load-hook '(lambda () (require 'dired-x)))
-(setq dired-omit-mode t)
-(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|__pycache__|\\.php_cs.cache$")
-(setq dired-listing-switches
-      "-laX --group-directories-first")
+;; company-lsp
+(use-package company-lsp
+  :ensure t
+  :commands company-lsp)
 
-(dolist (p '(use-package auctex))
-  (when (not (package-installed-p p))
-    (package-install p)))
+;; projectile
+(use-package projectile
+  :ensure t
+  :config
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (setq projectile-indexing-method 'alien)
+  (setq projectile-enable-caching t)
+  (setq projectile-project-search-path '("~/src/emploitic/" "~/src/github.com/tarrsalah"))
+  (setq projectile-switch-project-action 'projectile-dired)
+  (projectile-mode +1))
 
-;; markdown
-(use-package markdown-mode
-  :ensure t)
+;; smex
+(use-package smex
+  :ensure t
+  :config
+  (global-set-key (kbd "M-x") 'smex))
+
+;; magit
+(use-package magit
+  :ensure t
+  :bind (("C-x g". magit-status))
+  :config
+  (setq magit-completing-read-function 'magit-ido-completing-read))
 
 ;; popup kill ring
 (use-package popup-kill-ring
   :ensure t
   :bind (("M-y" . popup-kill-ring)))
 
-;; magit
-(use-package magit
-  :ensure t
-  :bind (("C-x g". magit-status)))
-
-;;; org-mode
-(setq org-support-shift-select t)
-(setq org-hide-leading-stars t)
+;; markdown
+(use-package markdown-mode
+  :ensure t)
 
 ;;; ibuffer
 (use-package ibuffer
@@ -181,9 +165,6 @@ setq initial-scratch-message ""
     (setq lsp-file-watch-threshold 40000)
     (setq lsp-prefer-flymake nil)))
 
-(setq lsp-intelephense-files-exclude
-      ["**/.git/**" "**/.svn/**" "**/.hg/**" "**/CVS/**" "**/.DS_Store/**" "**/node_modules/**" "**/bower_components/**"])
-
 ;;; lsp-ui
 (use-package lsp-ui
   :ensure t
@@ -192,42 +173,10 @@ setq initial-scratch-message ""
             (setq lsp-ui-sideline-enable nil)
             (setq lsp-ui-doc-enable nil)))
 
-;; company
-(use-package company
-  :ensure t
-  :diminish company-mode
-  :init
-  (add-hook 'after-init-hook 'global-company-mode)
-  :config
-  (progn
-    (setq company-tooltip-limit 10)
-    (setq company-idle-delay 1)
-    (setq company-echo-delay 0)
-    (setq company-begin-commands '(self-insert-command)))
-  :bind (("C-n" . company-complete)))
-
-
-;; company-lsp
-(use-package company-lsp
-  :ensure t
-  :commands company-lsp)
-
 ;; flycheck
 (use-package flycheck
   :diminish flycheck-mode
   :ensure t)
-
-;; smex
-(use-package smex
-  :ensure t
-  :config
-  (global-set-key (kbd "M-x") 'smex))
-
-;; ace-window
-(use-package ace-window
-  :ensure t
-  :config
-  (global-set-key (kbd "C-x o") 'ace-window))
 
 ;; exec-path-from-shell
 (use-package exec-path-from-shell
@@ -247,38 +196,6 @@ setq initial-scratch-message ""
 
   :config
   (progn
-    (use-package js2-refactor
-      :ensure t
-      :config
-      (progn
-        (add-hook 'js2-mode-hook #'js2-refactor-mode)
-        (js2r-add-keybindings-with-prefix "C-c C-m")))
-
-    (add-hook 'js2-mode-hook
-              (lambda()
-                (progn
-                  (tern-mode t)
-                  (abbrev-mode t)
-                  (setq js2-basic-offset 2)
-                  (flycheck-mode))))
-
-    (js2-mode-hide-warnings-and-errors)
-    (setq-default js2-additional-externs '("require" "module"))
-    (add-hook 'js2-mode-hook #'js2-imenu-extras-mode)
-
-    (use-package company-tern
-      :ensure t
-      :config
-      (add-to-list 'company-backends 'company-tern))
-
-    (use-package xref-js2
-      :ensure t
-      :config
-      (progn
-        (define-key js2-mode-map (kbd "M-.") nil)
-        (add-hook 'js2-mode-hook (lambda ()
-                                   (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))))
-
     (use-package prettier-js
       :ensure t
       :config
@@ -286,25 +203,13 @@ setq initial-scratch-message ""
         (add-hook 'json-mode-hook 'prettier-js-mode)
         (add-hook 'css-mode-hook 'prettier-js-mode)
         (add-hook 'js2-mode-hook 'prettier-js-mode)))
-
     (flycheck-add-mode 'javascript-eslint 'js2-mode)
-    (setq js-indent-level 2)
-
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
                           '(javascript-jshint)))
     (setq-default flycheck-disabled-checkers
                   (append flycheck-disabled-checkers
                           '(json-jsonlist)))))
-
-(use-package virtualenvwrapper
-  :ensure
-  :config
-  (progn
-    (setq venv-location "~/workon")
-    (venv-initialize-interactive-shells)
-    (venv-initialize-eshell)))
-
 ;; golang
 (use-package go-mode
   :ensure t)
@@ -314,6 +219,7 @@ setq initial-scratch-message ""
   "Install save hooks."
   (add-hook 'before-save-hook #'lsp-format-buffer t t)
   (add-hook 'before-save-hook #'lsp-organize-imports t t))
+
 (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 ;; web-mode
@@ -321,13 +227,6 @@ setq initial-scratch-message ""
   :ensure t
   :config
   (progn
-    (electric-pair-mode 1)
-    (setq web-mode-markup-indent-offset 4)
-    (setq web-mode-enable-auto-pairing nil)
-    (setq web-mode-enable-auto-indentation nil)
-    (setq web-mode-css-indent-offset 4)
-    (setq web-mode-code-indent-offset 4)
-    (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
@@ -337,24 +236,7 @@ setq initial-scratch-message ""
 
 ;; php
 (use-package php-mode
-  :ensure t
-  :mode (("\\.php\\'" . php-mode))
-  :init
-  (if
-      (file-exists-p "~/.config/composer/vendor/bin" )
-      (setq flycheck-php-phpcs-executable "~/.config/composer/vendor/bin/phpcs")
-    (warn "Can't find composer bin directory, some tools might not work"))
-  (setq flycheck-phpcs-standard "PSR2"))
-
-(use-package php-cs-fixer
   :ensure t)
-
-;; jade-mode for pug files
-(use-package jade-mode
-  :ensure t
-  :config
-  (progn
-    (add-to-list 'auto-mode-alist '("\\.pug\\'" . jade-mode))))
 
 ;; emmet-mode
 (use-package emmet-mode
@@ -366,24 +248,6 @@ setq initial-scratch-message ""
     (add-hook 'html-mode-hook 'emmet-mode)
     (add-hook 'css-mode 'emmet-mode)
     (add-hook 'less-css-mode 'emmet-mode)))
-
-;; latex
-(require 'tex)
-(setq-default TeX-master nil)
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-(setq TeX-save-query nil)
-
-(add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
-(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
-(setq TeX-source-correlate-start-server t)
-
-
-(autoload 'reftex-mode "reftex" "RefTeX Minor Mode" t)
-(autoload 'turn-on-reftex "reftex" "RefTeX Minor Mode" nil)
-(autoload 'reftex-citation "reftex-cite" "Make citation" nil)
-(autoload 'reftex-index-phrase-mode "reftex-index" "Phrase Mode" t)
 
 ;; docker
 (use-package dockerfile-mode
@@ -399,34 +263,6 @@ setq initial-scratch-message ""
   :config
   (add-to-list 'auto-mode-alist '("\\.conf\\'" . apache-mode)))
 
-;; latex
-(setq font-latex-fontify-sectioning 1.0)
-(setq reftex-plug-into-AUCTeX t)
-(setq Tex-Source-Correlate t)
-(setq TeX-output-view-style
-      (quote
-       (("^pdf$" "." "evince -f %o")
-        ("^html?$" "." "iceweasel %o"))))
-
-
-(add-hook 'text-mode-hook
-          (lambda ()
-            (progn
-              (flyspell-mode 0)
-            ;;(setq ispell-dictionary "francais")
-              (setq TeX-PDF-mode t))))
-
-(add-hook 'LaTeX-mode-hook
-          (lambda ()
-            (TeX-fold-mode 1)))
-
-(add-hook 'LaTeX-mode-hook
-          (lambda ()
-            (push
-             '("Latexmk" "latexmk -bibtex -pdf %s" TeX-run-TeX nil t
-               :help "Run Latexmk on file")
-             TeX-command-list)))
-
 ;; yasnippet
 (use-package yasnippet
   :ensure t
@@ -438,8 +274,7 @@ setq initial-scratch-message ""
 ;; dump-jump
 (use-package dumb-jump
   :ensure
-  :bind (("C-x j" . dumb-jump-go)))
-
+  :bind (("C-x j j" . dumb-jump-go) ("C-x j b" . dumb-jump-back)))
 
 ;; pass
 (use-package pass
@@ -456,10 +291,6 @@ setq initial-scratch-message ""
 (setq debug-on-error nil)
 (setq debug-on-quit nil)
 (setq ring-bell-function 'ignore)
-
-;; set font size
-(set-face-attribute 'default nil :family "FiraCode" :height 120)
-
 
 ;; custom file
 (setq custom-file "~/.emacs.d/custom.el")
