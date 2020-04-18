@@ -13,7 +13,6 @@
 (electric-pair-mode 1)
 (electric-indent-mode 1)
 (global-linum-mode t)
-(put 'dired-find-alternate-file 'disabled nil)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq shift-select-mode t)
 
@@ -68,6 +67,15 @@
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
+
+;; dired
+(add-hook 'dired-load-hook
+          '(lambda () (require 'dired-x)))
+(setq dired-omit-mode t)
+(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|__pycache__|\\.php_cs.cache$")
+(put 'dired-find-alternate-file 'disabled nil)
+(setq dired-listing-switches
+      "-laX --group-directories-first")
 
 ;; ido
 (setq ido-create-new-buffer 'always)
