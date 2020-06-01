@@ -5,9 +5,8 @@ default: prepare install
 prepare:
 	mkdir -p ~/src/github.com/tarrsalah ~/local ~/pkg ~/bin
 	sudo apt-add-repository ppa:git-core/ppa
-	sudo add-apt-repository ppa:ubuntu-elisp/ppa
 	sudo apt update
-	sudo apt install tmux zsh git emacs-snapshot
+	sudo apt install tmux zsh git emacs
 
 .PHONY: install
 install:
