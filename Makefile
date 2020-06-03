@@ -8,6 +8,8 @@ prepare:
 	sudo apt update
 	sudo apt install tmux zsh git emacs
 
+	git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+
 .PHONY: install
 install:
 	for file in $(shell find $(CURDIR) -name ".*" -not -name ".gitignore" -not -name ".git" -not -name ".*.swp"); do \

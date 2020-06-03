@@ -32,3 +32,7 @@ dkclean () {
     docker stop $(docker ps -qa)
     docker system prune
 }
+
+# asdf
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
