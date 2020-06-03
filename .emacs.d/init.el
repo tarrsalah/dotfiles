@@ -231,6 +231,15 @@
 
 (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
+;; elixir
+(use-package elixir-mode
+  :ensure t
+  :config
+  ;; (add-hook 'elixir-mode-hook
+  ;;           (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
+  ;;
+  )
+
 ;; web-mode
 (use-package web-mode
   :ensure t
