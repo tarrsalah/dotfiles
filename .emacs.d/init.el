@@ -190,6 +190,7 @@
 (use-package exec-path-from-shell
   :ensure t
   :config
+  (setq exec-path-from-shell-arguments '("-i"))
   (exec-path-from-shell-initialize))
 
 
