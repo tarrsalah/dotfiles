@@ -232,7 +232,6 @@
 (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 ;; erlang
-(erlang-font-lock-level-1)
 (setq erlang-electric-commands '())
 
 ;; elixir
