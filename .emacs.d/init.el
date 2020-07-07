@@ -253,8 +253,13 @@
 ;; web-mode
 (use-package web-mode
   :ensure t
+  :custom
+  (web-mode-markup-indent-offset 2)
+  (web-mode-css-indent-offset 2)
+  (web-mode-code-indent-offset 2)
   :config
   (progn
+    (setq web-mode-enable-auto-indentation nil)
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
