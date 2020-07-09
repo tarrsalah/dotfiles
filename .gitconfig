@@ -1,6 +1,6 @@
 [user]
 	email = tarrsalah@gmail.com
-	name = tarrsalah
+	name = Salah Eddine Taouririt
 [push]
 	default = current
 [core]
@@ -8,5 +8,3 @@
 	editor = vim
 [includeIf "gitdir:~/src/emploitic/**"]
     path = .gitconfig_emploitic
-[includeIf "gitdir:~/src/github.com/evercam/**"]
-    path = .gitconfig_evercam
