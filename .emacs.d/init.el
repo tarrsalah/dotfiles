@@ -45,7 +45,7 @@
 ;; themes
 (load "~/.emacs.d/themes/emacs-acme-theme/acme-theme.el")
 (load-theme 'acme t)
-(set-face-attribute 'default nil :family "FiraCode" :height 105)
+(set-face-attribute 'default nil :family "FiraCode" :height 110)
 
 
 ;; packages
