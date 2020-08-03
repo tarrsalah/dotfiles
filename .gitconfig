@@ -8,3 +8,5 @@
 	editor = vim
 [includeIf "gitdir:~/src/emploitic/**"]
     path = .gitconfig_emploitic
+[pull]
+	default = current
