@@ -188,11 +188,6 @@
             (setq lsp-ui-sideline-enable nil)
             (setq lsp-ui-doc-enable nil)))
 
-;; flycheck
-(use-package flycheck
-  :diminish flycheck-mode
-  :ensure t)
-
 ;; exec-path-from-shell
 (use-package exec-path-from-shell
   :ensure t
@@ -200,6 +195,22 @@
   (setq exec-path-from-shell-arguments '("-i"))
   (exec-path-from-shell-initialize))
 
+;; flycheck
+(use-package flycheck
+  :diminish flycheck-mode
+  :ensure t
+  :config
+  (add-hook 'after-init-hook #'global-flycheck-mode)
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(javascript-jshint)))
+
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(json-jsonlist)))
+
+  (flycheck-add-mode 'javascript-eslint 'web-mode)
+  (flycheck-add-mode 'javascript-eslint 'js2-mode))
 
 ;; javascript
 (use-package js2-mode
@@ -208,24 +219,8 @@
   (progn
     (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
     (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
-    (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode)))
+    (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))))
 
-  :config
-  (progn
-    (use-package prettier-js
-      :ensure t
-      :config
-      (progn
-        (add-hook 'json-mode-hook 'prettier-js-mode)
-        (add-hook 'css-mode-hook 'prettier-js-mode)
-        (add-hook 'js2-mode-hook 'prettier-js-mode)))
-    (flycheck-add-mode 'javascript-eslint 'js2-mode)
-    (setq-default flycheck-disabled-checkers
-                  (append flycheck-disabled-checkers
-                          '(javascript-jshint)))
-    (setq-default flycheck-disabled-checkers
-                  (append flycheck-disabled-checkers
-                          '(json-jsonlist)))))
 ;; golang
 (use-package go-mode
   :ensure t)
@@ -244,11 +239,7 @@
 ;; elixir
 (use-package elixir-mode
   :ensure t
-  :config
-  ;; (add-hook 'elixir-mode-hook
-  ;;           (lambda () (add-hook 'before-save-hook 'elixir-format nil t)))
-  ;;
-  )
+  :config)
 
 ;; web-mode
 (use-package web-mode
@@ -260,6 +251,7 @@
   :config
   (progn
     (setq web-mode-enable-auto-indentation nil)
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
