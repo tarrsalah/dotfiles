@@ -10,3 +10,5 @@
     path = .gitconfig_emploitic
 [pull]
 	default = current
+[github]
+	user = tarrsalah

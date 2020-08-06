@@ -150,6 +150,10 @@
   :config
   (setq magit-completing-read-function 'magit-ido-completing-read))
 
+;; forge
+(use-package forge
+  :after magit)
+
 ;; popup kill ring
 (use-package popup-kill-ring
   :ensure t
