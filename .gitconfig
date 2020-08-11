@@ -10,5 +10,8 @@
     path = .gitconfig_emploitic
 [pull]
 	default = current
+	rebase = true
 [github]
 	user = tarrsalah
+[merge]
+	ff = only
