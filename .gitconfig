@@ -15,3 +15,5 @@
 	user = tarrsalah
 [merge]
 	ff = only
+[diff]
+	tool = meld
