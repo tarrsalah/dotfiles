@@ -32,3 +32,7 @@ dkclean () {
 # asdf
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+
+
+# erlang
+export ERL_AFLAGS="-kernel shell_history enabled"
