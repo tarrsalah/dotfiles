@@ -1,3 +1,7 @@
+;;; package --- Personel emacs configurations
+;;; Commentary:
+;;; Code:
+
 (setq debug-on-error t)
 (setq debug-on-quit t)
 
@@ -78,10 +82,13 @@
       "-laX --group-directories-first")
 
 ;; ido
-(setq ido-create-new-buffer 'always)
-(global-set-key (kbd "C-b") 'ido-switch-buffer)
-(ido-mode)
-(ido-everywhere)
+(use-package ido
+  :ensure t
+  :config
+  (setq ido-create-new-buffer 'always)
+  (global-set-key (kbd "C-b") 'ido-switch-buffer)
+  (ido-mode)
+  (ido-everywhere))
 
 ;; ido flex
 (use-package flx-ido
@@ -99,13 +106,6 @@
 (use-package ido-vertical-mode
   :ensure t
   :config (ido-vertical-mode))
-
-(require 'ansi-color)
-(defun colorize-compilation-buffer ()
-  (toggle-read-only)
-  (ansi-color-apply-on-region compilation-filter-start (point))
-  (toggle-read-only))
-(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
 
 ;; company
 (use-package company
@@ -181,8 +181,7 @@
   :config
   (progn
     (setq lsp-enable-file-watchers t)
-    (setq lsp-file-watch-threshold 40000)
-    (setq lsp-prefer-flymake nil)))
+    (setq lsp-file-watch-threshold 40000)))
 
 ;;; lsp-ui
 (use-package lsp-ui
@@ -212,7 +211,6 @@
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
                         '(json-jsonlist)))
-
   (flycheck-add-mode 'javascript-eslint 'web-mode)
   (flycheck-add-mode 'javascript-eslint 'js2-mode))
 
@@ -255,7 +253,6 @@
   :config
   (progn
     (setq web-mode-enable-auto-indentation nil)
-    (flycheck-add-mode 'javascript-eslint 'web-mode)
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
@@ -324,3 +321,10 @@
 ;; custom file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
+
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars)
+;; End:
+
+(provide 'init)
+;;; init.el ends here
