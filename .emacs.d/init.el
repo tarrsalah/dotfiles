@@ -79,7 +79,7 @@
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|__pycache__|\\.php_cs.cache$")
 (put 'dired-find-alternate-file 'disabled nil)
 (setq dired-listing-switches
-      "-laX --group-directories-first")
+      "-laXGh1v --group-directories-first")
 
 ;; ido
 (use-package ido
