@@ -226,6 +226,10 @@
     (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
     (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))))
 
+;; prettire
+(use-package prettier-js
+    :ensure t)
+
 ;; golang
 (use-package go-mode
   :ensure t)
