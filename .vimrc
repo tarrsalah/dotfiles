@@ -19,11 +19,16 @@ set incsearch
 set hlsearch
 set nobackup
 set noswapfile
+set updatetime=100
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 call plug#end()
+
+autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 
 let mapleader="'"
 nmap <Leader><space> :noh<CR>

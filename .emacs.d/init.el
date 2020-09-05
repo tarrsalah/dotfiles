@@ -46,12 +46,6 @@
 (global-set-key (kbd "C-x r r") 'rgrep)
 
 
-;; themes
-(load "~/.emacs.d/themes/emacs-acme-theme/acme-theme.el")
-(load-theme 'acme t)
-(set-face-attribute 'default nil :family "FiraCode" :height 110)
-
-
 ;; packages
 (setq package-enable-at-startup nil)
 
@@ -71,6 +65,11 @@
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
+
+;; themes
+(load "~/.emacs.d/themes/emacs-acme-theme/acme-theme.el")
+(load-theme 'acme t)
+(set-face-attribute 'default nil :family "FiraCode" :height 105)
 
 ;; dired
 (add-hook 'dired-load-hook

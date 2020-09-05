@@ -6,9 +6,7 @@ prepare:
 	mkdir -p ~/src/github.com/tarrsalah ~/local ~/pkg ~/bin
 	sudo apt-add-repository ppa:git-core/ppa
 	sudo apt update
-	sudo apt install tmux zsh git emacs meld
-
-	git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+	sudo apt vim install tmux zsh git emacs meld silversearcher-ag
 
 .PHONY: install
 install:
