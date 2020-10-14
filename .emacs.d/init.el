@@ -19,6 +19,7 @@
 (global-linum-mode t)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq shift-select-mode t)
+(setq compilation-always-kill t)
 
 (setq
  backup-by-copying t
