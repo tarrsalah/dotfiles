@@ -35,5 +35,6 @@ nmap <Leader>g :GitFiles<CR>
 nmap <Leader>f :Files<CR>
 nmap <Leader>b :Buffers<CR>
 nmap <Leader>s :Ag<CR>
+nnoremap <silent> <c-_> :set hlsearch!<cr>
 
 syntax off
