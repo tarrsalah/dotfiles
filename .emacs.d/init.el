@@ -5,6 +5,7 @@
 (setq debug-on-error t)
 (setq debug-on-quit t)
 
+
 ;; global settings
 (tool-bar-mode 0)
 (scroll-bar-mode 0)
@@ -70,7 +71,7 @@
 ;; themes
 (load "~/.emacs.d/themes/emacs-acme-theme/acme-theme.el")
 (load-theme 'acme t)
-(set-face-attribute 'default nil :family "FiraCode" :height 105)
+(set-face-attribute 'default nil :family "FiraCode" :height 100)
 
 ;; dired
 (add-hook 'dired-load-hook
@@ -198,6 +199,8 @@
   :config
   (setq exec-path-from-shell-arguments '("-i"))
   (exec-path-from-shell-initialize))
+
+(exec-path-from-shell-copy-env "GOPATH")
 
 ;; flycheck
 (use-package flycheck
