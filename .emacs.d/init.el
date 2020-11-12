@@ -69,8 +69,8 @@
   (package-install 'use-package))
 
 ;; themes
-(load "~/.emacs.d/themes/emacs-acme-theme/acme-theme.el")
-(load-theme 'acme t)
+(load "~/.emacs.d/clwt-theme.el")
+(load-theme 'clwt t)
 (set-face-attribute 'default nil :family "FiraCode" :height 100)
 
 ;; dired
@@ -142,7 +142,6 @@
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (setq projectile-indexing-method 'alien)
   (setq projectile-enable-caching t)
-  (setq projectile-project-search-path '("~/src/emploitic/" "~/src/github.com/tarrsalah"))
   (setq projectile-switch-project-action 'projectile-dired)
   (projectile-mode +1))
 
