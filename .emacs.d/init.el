@@ -82,6 +82,14 @@
 (setq dired-listing-switches
       "-laXGh1v --group-directories-first")
 
+;; ansi colors for compilation buffer
+(require 'ansi-color)
+(defun colorize-compilation-buffer ()
+  (read-only-mode)
+  (ansi-color-apply-on-region compilation-filter-start (point))
+  (read-only-mode))
+(add-hook 'compilation-filter-hook 'colorize-compilation-buffer)
+
 ;; ido
 (use-package ido
   :ensure t
