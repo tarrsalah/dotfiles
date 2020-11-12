@@ -284,6 +284,11 @@
 (use-package php-mode
   :ensure t)
 
+;; java
+(add-hook 'java-mode-hook
+          (lambda ()
+            (setq c-basic-offset 2)))
+
 ;; emmet-mode
 (use-package emmet-mode
   :ensure t
