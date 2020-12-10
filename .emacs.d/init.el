@@ -261,7 +261,9 @@
 ;; elixir
 (use-package elixir-mode
   :ensure t
-  :config)
+  :config
+  (add-hook 'elixir-mode-hook
+            (lambda () (add-hook 'before-save-hook 'elixir-format nil t))))
 
 ;; web-mode
 (use-package web-mode
