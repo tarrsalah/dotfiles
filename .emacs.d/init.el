@@ -18,6 +18,7 @@
 (electric-pair-mode 1)
 (electric-indent-mode 0)
 (global-linum-mode t)
+(set-window-margins nil 4)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq shift-select-mode t)
 (setq compilation-always-kill t)
