@@ -72,7 +72,7 @@
 ;; themes
 (load "~/.emacs.d/clwt-theme.el")
 (load-theme 'clwt t)
-(set-face-attribute 'default nil :family "FiraCode" :height 100)
+(set-face-attribute 'default nil :family "FiraCode" :height 110)
 
 ;; dired
 (add-hook 'dired-load-hook
