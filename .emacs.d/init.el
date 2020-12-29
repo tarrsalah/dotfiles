@@ -47,6 +47,7 @@
 
 ;;; global key bindings
 (global-set-key (kbd "C-x r r") 'rgrep)
+(global-set-key (kbd "C-x r g") 'vc-git-grep)
 
 
 ;; packages
