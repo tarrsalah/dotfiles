@@ -6,8 +6,6 @@
 [core]
 	excludesfile = /home/tarrsalah/.gitignore_global
 	editor = vim
-[includeIf "gitdir:~/src/emploitic/**"]
-    path = .gitconfig_emploitic
 [pull]
 	default = current
 	rebase = true
