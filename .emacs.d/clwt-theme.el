@@ -35,7 +35,7 @@
 ;;; Code:
 (deftheme clwt "Colorless white theme")
 
-(let* ((clwt/bgyellow "#fcfcfc")
+(let* ((clwt/bgyellow "#ffffdd")
        (clwt/fg "#000000")
        (clwt/darkblue "#000088")
        (clwt/lightblue "#5180B3")

@@ -12,7 +12,6 @@
 (show-paren-mode 1)
 (delete-selection-mode 1)
 (global-hl-line-mode 1)
-(menu-bar-mode 0)
 (global-auto-revert-mode)
 (set-window-margins nil 2)
 (electric-pair-mode 1)
