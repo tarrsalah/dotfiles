@@ -288,6 +288,9 @@
 (use-package php-mode
   :ensure t)
 
+(setenv "WORKON_HOME" "~/pkg/miniconda3/envs")
+(pyvenv-mode 1)
+
 ;; java
 (add-hook 'java-mode-hook
           (lambda ()
