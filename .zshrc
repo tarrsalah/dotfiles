@@ -18,10 +18,9 @@ eval "$(rbenv init -)"
 export PATH="$PATH:$HOME/.yarn/bin"
 
 # Go
-export GOPATH=$HOME
-export PATH="$PATH:$GOPATH/bin"
+export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/local/go/bin"
-export GO111MODULE="on"
+export GO111MODULE="auto"
 
 # Symfony
 export PATH="$HOME/.symfony/bin:$PATH"

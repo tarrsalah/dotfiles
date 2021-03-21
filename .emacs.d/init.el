@@ -211,6 +211,7 @@
   (exec-path-from-shell-initialize))
 
 (exec-path-from-shell-copy-env "GOPATH")
+(exec-path-from-shell-copy-env "GO111MODULE")
 
 ;; flycheck
 (use-package flycheck
