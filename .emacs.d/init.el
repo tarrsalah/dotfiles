@@ -142,9 +142,8 @@
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (setq projectile-indexing-method 'alien)
-  (setq projectile-enable-caching t)
   (setq projectile-switch-project-action 'projectile-dired)
-  (add-to-list 'projectile-globally-ignored-directories "deps")
+  (add-to-list 'projectile-globally-ignored-directories "*deps")
   (projectile-mode +1))
 
 ;; smex
