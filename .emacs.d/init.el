@@ -188,7 +188,6 @@
   :ensure t
   :commands (lsp lsp-deferred)
   :hook (go-mode . lsp-deferred)
-  :hook (php-mode . lsp-deferred)
   :config
   (progn
     (setq lsp-enable-file-watchers t)
