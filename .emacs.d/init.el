@@ -71,8 +71,8 @@
   (package-install 'use-package))
 
 ;; themes
-(load "~/.emacs.d/clwt-theme.el")
-(load-theme 'clwt t)
+(load "~/.emacs.d/white-theme.el")
+(load-theme 'white t)
 (set-face-attribute 'default nil :family "FiraCode" :height 110)
 
 ;; dired
