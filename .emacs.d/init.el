@@ -14,7 +14,6 @@
 (delete-selection-mode 1)
 (global-hl-line-mode 1)
 (global-auto-revert-mode)
-(set-window-margins nil 2)
 (electric-pair-mode 1)
 (electric-indent-mode 0)
 (global-linum-mode t)
