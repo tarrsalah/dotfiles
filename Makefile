@@ -14,4 +14,3 @@ install:
 		f=$$(basename $$file); \
 		ln -sfn $$file $(HOME)/$$f; \
 	done; \
-	ln -sfn $(realpath ./i3) $(HOME)/.config/i3/config
