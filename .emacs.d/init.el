@@ -72,7 +72,7 @@
 ;; themes
 (load "~/.emacs.d/white-theme.el")
 (load-theme 'white t)
-(set-face-attribute 'default nil :family "FiraCode" :height 110)
+(set-face-attribute 'default nil :family "FiraCode")
 
 ;; dired
 (add-hook 'dired-load-hook
