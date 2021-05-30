@@ -82,6 +82,9 @@
 (load-theme 'white t)
 (set-face-attribute 'default nil :family "FiraCode")
 
+(add-to-list 'default-frame-alist '(height . 40))
+(add-to-list 'default-frame-alist '(width . 100))
+
 ;; dired
 (add-hook 'dired-load-hook
           '(lambda () (require 'dired-x)))
