@@ -160,6 +160,9 @@
   :ensure t
   :bind (("C-x g". magit-status))
   :config
+  (setq magit-display-buffer-function
+      (lambda (buffer)
+        (display-buffer buffer '(display-buffer-same-window))))
   (setq magit-completing-read-function 'magit-ido-completing-read))
 
 ;; forge
