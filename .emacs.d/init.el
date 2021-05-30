@@ -5,7 +5,6 @@
 (setq debug-on-error t)
 (setq debug-on-quit t)
 
-
 ;; global settings
 (menu-bar-mode 0)
 (tool-bar-mode 0)
@@ -20,16 +19,6 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq shift-select-mode t)
 
-(setq compilation-always-kill t)
-(setq compilation-scroll-output t)
-(add-hook 'compilation-mode-hook
-    (lambda() (switch-to-buffer "*compilation*")))
-
-(require 'ansi-color)
-(add-hook 'compilation-filter-hook
-    (lambda()
-      (ansi-color-apply-on-region compilation-filter-start (point))
-      (read-only-mode)))
 (setq
  backup-by-copying t
  backup-directory-alist
@@ -38,7 +27,6 @@
  kept-new-versions 6
  kept-old-versions 6
  version-control t)
-
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -50,12 +38,26 @@
 
 (define-coding-system-alias 'UTF-8 'utf-8)
 
-
-
 ;;; global key bindings
 (global-set-key (kbd "C-x r r") 'rgrep)
 (global-set-key (kbd "C-x r g") 'vc-git-grep)
 
+;; compilation
+(defun my/switch-to-compilation()
+    "Switch to compilaiton buffer."
+    (interactive)
+    (switch-to-buffer "*compilation*"))
+
+(setq compilation-always-kill t)
+(setq compilation-scroll-output t)
+(add-hook 'compilation-mode-hook 'my/switch-to-compilation)
+(global-set-key (kbd "C-x c") 'my/switch-to-compilation)
+
+(require 'ansi-color)
+(add-hook 'compilation-filter-hook
+    (lambda()
+      (ansi-color-apply-on-region compilation-filter-start (point))
+      (read-only-mode)))
 
 ;; packages
 (setq package-enable-at-startup nil)
