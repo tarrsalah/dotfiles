@@ -15,7 +15,6 @@
 (global-auto-revert-mode)
 (electric-pair-mode 1)
 (electric-indent-mode 0)
-(global-linum-mode t)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq shift-select-mode t)
 
@@ -85,7 +84,7 @@
 (set-face-attribute 'default nil :family "FiraCode")
 
 (add-to-list 'default-frame-alist '(height . 40))
-(add-to-list 'default-frame-alist '(width . 100))
+(add-to-list 'default-frame-alist '(width . 80))
 
 ;; dired
 (add-hook 'dired-load-hook
