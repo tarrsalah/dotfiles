@@ -132,7 +132,6 @@
     (setq company-tooltip-limit 10)
     (setq company-idle-delay 1)
     (setq company-echo-delay 0)
-    (setq lsp-completion-provider :capf)
     (setq company-begin-commands '(self-insert-command)))
   :bind (("C-n" . company-complete)))
 
@@ -186,24 +185,6 @@
   :ensure t
   :bind (("C-=" . er/expand-region)))
 
-;;; lsp-mode
-(use-package lsp-mode
-  :ensure t
-  :commands (lsp lsp-deferred)
-  :hook (go-mode . lsp-deferred)
-  :config
-  (progn
-    (setq lsp-enable-file-watchers t)
-    (setq lsp-file-watch-threshold 40000)))
-
-;;; lsp-ui
-(use-package lsp-ui
-  :ensure t
-  :commands lsp-ui-mode
-  :config (progn
-            (setq lsp-ui-sideline-enable nil)
-            (setq lsp-ui-doc-enable nil)))
-
 ;; exec-path-from-shell
 (use-package exec-path-from-shell
   :ensure t
@@ -251,13 +232,6 @@
 (use-package go-mode
   :ensure t)
 
-;; go hooks
-(defun lsp-go-install-save-hooks ()
-  "Install save hooks."
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
-
-(add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
 
 ;; erlang
 (setq erlang-electric-commands '())
