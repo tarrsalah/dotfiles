@@ -132,13 +132,9 @@
     (setq company-tooltip-limit 10)
     (setq company-idle-delay 1)
     (setq company-echo-delay 0)
+    (setq lsp-completion-provider :capf)
     (setq company-begin-commands '(self-insert-command)))
   :bind (("C-n" . company-complete)))
-
-;; company-lsp
-(use-package company-lsp
-  :ensure t
-  :commands company-lsp)
 
 ;; projectile
 (use-package projectile
@@ -148,6 +144,7 @@
   (setq projectile-indexing-method 'alien)
   (setq projectile-switch-project-action 'projectile-dired)
   (add-to-list 'projectile-globally-ignored-directories "*deps")
+  (with-current-buffer (window-buffer) (projectile-project-root))
   (projectile-mode +1))
 
 ;; smex
@@ -292,14 +289,6 @@
 ;; php
 (use-package php-mode
   :ensure t)
-
-(setenv "WORKON_HOME" "~/pkg/miniconda3/envs")
-(pyvenv-mode 1)
-
-;; java
-(add-hook 'java-mode-hook
-          (lambda ()
-            (setq c-basic-offset 2)))
 
 ;; emmet-mode
 (use-package emmet-mode
