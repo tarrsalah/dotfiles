@@ -20,6 +20,9 @@ set hlsearch
 set nobackup
 set noswapfile
 set updatetime=100
+set autochdir
+set path+=**
+set wildmenu
 
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
