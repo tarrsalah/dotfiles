@@ -36,20 +36,21 @@
 (deftheme black "Colorless black theme")
 
 (let* ((black/bg "#000")
-       (black/fg "#aaa")
-       (black/lightbg "#111")
-       (black/lightgray "#EEDC82"))
+       (black/bg1 "#111")
+       (black/bg2 "#555")
+       (black/fg "#ccc")
+       (black/orange "#cf6a4c"))
 
   (custom-theme-set-faces
    `black
    `(default ((t (:foreground ,black/fg :background ,black/bg))))
-   `(region  ((t (:background "grey"))))
+   `(region  ((t (:background ,black/bg2))))
 
    ;; mode line
-   `(linum ((t :foreground ,black/lightgray)))
+   `(linum ((t :foreground ,black/orange)))
 
    ;; hl-line
-   `(hl-line ((t :background ,black/lightbg)))
+   `(hl-line ((t :background ,black/bg1)))
 
    ;;; no syntax highlight
    `(font-lock-builtin-face		((t (:foreground ,black/fg))))
@@ -61,24 +62,25 @@
    `(font-lock-variable-name-face	((t (:foreground ,black/fg))))
 
    ;; except for strings and comments
-   `(font-lock-string-face		((t (:foreground ,black/lightgray))))
-   `(font-lock-comment-face		((t (:foreground ,black/lightgray))))
-   `(font-lock-comment-delimiter-face	((t (:foreground ,black/lightgray))))
-   `(font-lock-doc-string-face ((t (:foreground ,black/lightgray))))
-   `(font-lock-doc-face ((t (:foreground ,black/lightgray))))
-   `(font-lock-preprocessor-face ((t (:foreground ,black/lightgray))))
-   `(font-lock-regexp-grouping-construct ((t (:foreground ,black/lightgray))))
+   `(font-lock-string-face		((t (:foreground ,black/orange))))
+   `(font-lock-orange-face		((t (:foreground ,black/orange))))
+   `(font-lock-orange-delimiter-face	((t (:foreground ,black/orange))))
+   `(font-lock-doc-string-face ((t (:foreground ,black/orange))))
+   `(font-lock-doc-face ((t (:foreground ,black/orange))))
+   `(font-lock-preprocessor-face ((t (:foreground ,black/orange))))
+   `(font-lock-regexp-grouping-construct ((t (:foreground ,black/orange))))
 
    ;; php
-   `(php-doc-annotation-tag ((t (:foreground ,black/lightgray))))
-   `(php-doc-class-name ((t (:foreground ,black/lightgray))))
-   `(php-doc-$this-sigil ((t (:foreground ,black/lightgray))))
-   `(php-doc-variable-sigil ((t (:foreground ,black/lightgray))))
-   `(php-doc-$this ((t (:foreground ,black/lightgray))))
-   `(php-type ((t (:foreground ,black/lightgray))))
+   `(php-doc-annotation-tag ((t (:foreground ,black/orange))))
+   `(php-doc-class-name ((t (:foreground ,black/orange))))
+   `(php-doc-$this-sigil ((t (:foreground ,black/orange))))
+   `(php-doc-variable-sigil ((t (:foreground ,black/orange))))
+   `(php-doc-$this ((t (:foreground ,black/orange))))
+   `(php-type ((t (:foreground ,black/orange))))
+
 
    `(font-lock-warning-face		((t (:foreground "red" :bold t))))
-   `(dired-directory ((t (:foreground ,black/lightgray))))))
+   `(dired-directory ((t (:foreground ,black/orange))))))
 
 ;;;###autoload
 (when load-file-name
