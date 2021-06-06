@@ -79,8 +79,8 @@
   (package-install 'use-package))
 
 ;; themes
-(load "~/.emacs.d/white-theme.el")
-(load-theme 'white t)
+(load "~/.emacs.d/black-theme.el")
+(load-theme 'black t)
 (set-face-attribute 'default nil :family "FiraCode")
 
 (add-to-list 'default-frame-alist '(height . 40))
