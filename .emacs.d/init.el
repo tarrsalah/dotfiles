@@ -214,6 +214,14 @@
   :ensure t)
 
 
+;; typescript
+(use-package typescript-mode
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))))
+
+
 ;; erlang
 (setq erlang-electric-commands '())
 
