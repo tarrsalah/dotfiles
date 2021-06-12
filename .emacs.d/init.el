@@ -79,8 +79,8 @@
   (package-install 'use-package))
 
 ;; themes
-(load "~/.emacs.d/black-theme.el")
-(load-theme 'black t)
+(load "~/.emacs.d/white-theme.el")
+(load-theme 'white t)
 (set-face-attribute 'default nil :family "FiraCode")
 
 (add-to-list 'default-frame-alist '(height . 40))
@@ -95,31 +95,12 @@
 (setq dired-listing-switches
       "-laXGh1v --group-directories-first")
 
-;; ido
-(use-package ido
-  :ensure t
-  :config
-  (setq ido-create-new-buffer 'always)
-  (global-set-key (kbd "C-b") 'ido-switch-buffer)
-  (ido-mode)
-  (ido-everywhere))
 
-;; ido flex
-(use-package flx-ido
-  :ensure t
-  :config
-  (progn
-    (flx-ido-mode 1)
-    (setq ido-use-faces nil)
-    (setq ido-enable-flex-matching t)
-    (setq ido-enable-prefix t)
-    (setq ido-enable-flex-matching t)))
-
-
-;; ido-vertical-mode
-(use-package ido-vertical-mode
-  :ensure t
-  :config (ido-vertical-mode))
+;; helm
+(use-package helm
+  :ensure t)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(helm-mode 1)
 
 ;; company
 (use-package company

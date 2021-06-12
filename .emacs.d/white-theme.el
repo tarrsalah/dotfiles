@@ -51,9 +51,6 @@
    ;; mode line
    `(linum ((t :foreground ,white/darkgray)))
 
-   ;; hl-line
-   `(hl-line ((t (:background ,white/lightgray))))
-
    ;;; no syntax highlight
    `(font-lock-builtin-face		((t (:foreground ,white/fg))))
    `(font-lock-function-name-face	((t (:foreground ,white/fg))))
@@ -71,6 +68,24 @@
    `(font-lock-doc-face ((t (:foreground ,white/lightblue))))
    `(font-lock-preprocessor-face ((t (:foreground ,white/lightblue))))
    `(font-lock-regexp-grouping-construct ((t (:foreground ,white/lightblue))))
+
+
+   `(helm-header
+     ((t (:foreground ,white/darkblue
+                      :background ,white/lightgray
+                      :underline nil
+                      :box nil
+                      :extend t))))
+   `(helm-source-header
+     ((t (:foreground ,white/darkblue
+                      :background ,white/lightgray
+                      :underline nil
+                      :weight bold
+                      :box (:line-width -1 :style released-button)
+                      :extend t))))
+
+   `(helm-selection ((t (:background "darkseagreen2" :underline nil))))
+   `(helm-selection-line ((t (:background "darkseagreen2"))))
 
    ;; php
    `(php-doc-annotation-tag ((t (:foreground ,white/lightblue))))
