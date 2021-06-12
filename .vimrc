@@ -20,7 +20,6 @@ set hlsearch
 set nobackup
 set noswapfile
 set updatetime=100
-set autochdir
 set path+=**
 set wildmenu
 
