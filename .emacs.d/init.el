@@ -213,6 +213,7 @@
   :ensure t
   :config
   (progn
+    (setq-default typescript-indent-level 2)
     (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))))
 
 
