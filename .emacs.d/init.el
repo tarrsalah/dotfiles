@@ -98,9 +98,12 @@
 
 ;; helm
 (use-package helm
-  :ensure t)
-(global-set-key (kbd "M-x") 'helm-M-x)
-(helm-mode 1)
+  :ensure t
+  :bind
+    (("C-x b" . 'switch-to-buffer)
+     ("M-x" . 'helm-M-x))
+  :config
+    (helm-mode 1))
 
 ;; company
 (use-package company
@@ -126,12 +129,6 @@
   (add-to-list 'projectile-globally-ignored-directories "*deps")
   (with-current-buffer (window-buffer) (projectile-project-root))
   (projectile-mode +1))
-
-;; smex
-(use-package smex
-  :ensure t
-  :config
-  (global-set-key (kbd "M-x") 'smex))
 
 ;; magit
 (use-package magit
