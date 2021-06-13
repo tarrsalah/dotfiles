@@ -92,24 +92,30 @@
       "-laXGh1v --group-directories-first")
 
 
+
 ;; helm
 (use-package helm
   :ensure t
   :bind
     (("C-b" . 'switch-to-buffer)
-     ("C-x r r" . 'helm-grep-do-git-grep)
-     ("C-x r g" . 'helm-do-grep-ag)
      ("M-x" . 'helm-M-x))
   :config
     (helm-mode 1))
+
+(defun my/helm-git-grep (not-all)
+  (interactive "P")
+  (helm-grep-git-1 default-directory (null not-all)))
+
+(global-set-key (kbd "C-x r r") 'my/helm-git-grep)
+
+(use-package helm-ag
+    :ensure t)
 
 (use-package helm-projectile
     :ensure t
     :config
     (helm-projectile-on))
 
-(use-package helm-ag
-    :ensure t)
 
 ;; company
 (use-package company
