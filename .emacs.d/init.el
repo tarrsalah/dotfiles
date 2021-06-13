@@ -96,11 +96,20 @@
 (use-package helm
   :ensure t
   :bind
-    (("C-x b" . 'switch-to-buffer)
-     ("C-x r r" . 'helm-do-grep-ag)
+    (("C-b" . 'switch-to-buffer)
+     ("C-x r r" . 'helm-grep-do-git-grep)
+     ("C-x r g" . 'helm-do-grep-ag)
      ("M-x" . 'helm-M-x))
   :config
     (helm-mode 1))
+
+(use-package helm-projectile
+    :ensure t
+    :config
+    (helm-projectile-on))
+
+(use-package helm-ag
+    :ensure t)
 
 ;; company
 (use-package company
