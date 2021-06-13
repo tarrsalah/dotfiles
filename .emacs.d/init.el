@@ -37,10 +37,6 @@
 
 (define-coding-system-alias 'UTF-8 'utf-8)
 
-;;; global key bindings
-(global-set-key (kbd "C-x r r") 'rgrep)
-(global-set-key (kbd "C-x r g") 'vc-git-grep)
-
 ;; compilation
 (defun my/switch-to-compilation()
     "Switch to compilaiton buffer."
@@ -101,6 +97,7 @@
   :ensure t
   :bind
     (("C-x b" . 'switch-to-buffer)
+     ("C-x r r" . 'helm-do-grep-ag)
      ("M-x" . 'helm-M-x))
   :config
     (helm-mode 1))
