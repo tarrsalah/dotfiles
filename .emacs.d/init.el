@@ -283,8 +283,10 @@
 
 ;; dump-jump
 (use-package dumb-jump
-  :ensure
-  :bind (("C-x j j" . dumb-jump-go) ("C-x j b" . dumb-jump-back)))
+  :ensure t
+  :config
+    (setq dumb-jump-prefer-searcher 'ag)
+    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
 
 ;; pass
 (use-package pass
