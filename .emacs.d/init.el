@@ -17,6 +17,7 @@
 (electric-indent-mode 0)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq shift-select-mode t)
+(global-linum-mode t)
 
 (setq
  backup-by-copying t
