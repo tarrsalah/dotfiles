@@ -31,12 +31,11 @@ call plug#end()
 
 autocmd FileType javascript setlocal ts=2 sts=2 sw=2
 
-let mapleader="'"
+let mapleader=" "
 nmap <Leader><space> :noh<CR>
-nmap <Leader>g :GitFiles<CR>
-nmap <Leader>f :Files<CR>
-nmap <Leader>b :Buffers<CR>
-nmap <Leader>s :Ag<CR>
-nnoremap <silent> <c-_> :set hlsearch!<cr>
-
+nmap <Leader>gd <Plug>(coc-definition)
+nmap <Leader>gr <Plug>(coc-references)
+nmap <C-p> :GitFiles<CR>
+nmap <C-b> :Buffers<CR>
 syntax off
+filetype plugin indent on
