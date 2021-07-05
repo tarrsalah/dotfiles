@@ -35,7 +35,7 @@
 ;;; Code:
 (deftheme white "Colorless white theme")
 
-(let* ((white/bgyellow "#ffffdd")
+(let* ((white/bgyellow "#ffffcc")
        (white/fg "#000")
        (white/darkblue "#000088")
        (white/lightblue "#5180B3")

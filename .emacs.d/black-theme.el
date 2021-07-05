@@ -35,10 +35,10 @@
 ;;; Code:
 (deftheme black "Colorless black theme")
 
-(let* ((black/bg "#222")
+(let* ((black/bg "#111")
        (black/bg1 "#444")
        (black/bg2 "#666")
-       (black/fg "#ccc")
+       (black/fg "#aaa")
        (black/strings "#cf6a4c"))
 
   (custom-theme-set-faces
@@ -68,6 +68,10 @@
    `(font-lock-doc-face ((t (:foreground ,black/strings))))
    `(font-lock-preprocessor-face ((t (:foreground ,black/strings))))
    `(font-lock-regexp-grouping-construct ((t (:foreground ,black/strings))))
+
+   `(helm-selection ((t (:background ,black/bg1 :underline nil))))
+   `(helm-selection-line ((t (:background ,black/bg1))))
+
 
 
    ;; php
