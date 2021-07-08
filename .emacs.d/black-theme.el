@@ -36,22 +36,26 @@
 (deftheme black "Colorless black theme")
 
 (let* ((black/bg "#111")
-       (black/bg1 "#444")
-       (black/bg2 "#666")
-       (black/fg "#aaa")
-       (black/strings "#cf6a4c"))
+       (black/bg1 "#222")
+       (black/bg2 "#333")
+       (black/bg3 "#555")
+
+       (black/fg "#bbb")
+       (black/yellow "yellow")
+       (black/orange "#cf6a4c"))
 
   (custom-theme-set-faces
    `black
    `(default ((t (:foreground ,black/fg :background ,black/bg))))
    `(region  ((t (:background ,black/bg2))))
+
    ;; mode line
-   `(linum ((t :foreground ,black/strings)))
+   `(linum ((t :foreground ,black/bg3)))
 
    ;; hl-line
    `(hl-line ((t :background ,black/bg1)))
 
-   ;;; no syntax highlighto
+   ;;; no syntax highligh
    `(font-lock-builtin-face		((t (:foreground ,black/fg))))
    `(font-lock-function-name-face	((t (:foreground ,black/fg))))
    `(font-lock-keyword-face		((t (:foreground ,black/fg))))
@@ -61,13 +65,13 @@
    `(font-lock-variable-name-face	((t (:foreground ,black/fg))))
 
    ;; except for strings and comments
-   `(font-lock-string-face		((t (:foreground ,black/strings))))
-   `(font-lock-comment-face		((t (:foreground ,black/strings))))
-   `(font-lock-comment-delimiter-face	((t (:foreground ,black/strings))))
-   `(font-lock-doc-string-face ((t (:foreground ,black/strings))))
-   `(font-lock-doc-face ((t (:foreground ,black/strings))))
-   `(font-lock-preprocessor-face ((t (:foreground ,black/strings))))
-   `(font-lock-regexp-grouping-construct ((t (:foreground ,black/strings))))
+   `(font-lock-string-face		((t (:foreground ,black/fg))))
+   `(font-lock-comment-face		((t (:foreground ,black/orange))))
+   `(font-lock-comment-delimiter-face	((t (:foreground ,black/orange))))
+   `(font-lock-doc-string-face ((t (:foreground ,black/orange))))
+   `(font-lock-doc-face ((t (:foreground ,black/orange))))
+   `(font-lock-preprocessor-face ((t (:foreground ,black/orange))))
+   `(font-lock-regexp-grouping-construct ((t (:foreground ,black/orange))))
 
    `(helm-selection ((t (:background ,black/bg1 :underline nil))))
    `(helm-selection-line ((t (:background ,black/bg1))))
@@ -75,16 +79,31 @@
 
 
    ;; php
-   `(php-doc-annotation-tag ((t (:foreground ,black/strings))))
-   `(php-doc-class-name ((t (:foreground ,black/strings))))
-   `(php-doc-$this-sigil ((t (:foreground ,black/strings))))
-   `(php-doc-variable-sigil ((t (:foreground ,black/strings))))
-   `(php-doc-$this ((t (:foreground ,black/strings))))
-   `(php-type ((t (:foreground ,black/strings))))
+   `(php-doc-annotation-tag ((t (:foreground ,black/orange))))
+   `(php-doc-class-name ((t (:foreground ,black/orange))))
+   `(php-doc-$this-sigil ((t (:foreground ,black/orange))))
+   `(php-doc-variable-sigil ((t (:foreground ,black/orange))))
+   `(php-doc-$this ((t (:foreground ,black/orange))))
+   `(php-type ((t (:foreground ,black/orange))))
+
+
+   `(helm-header
+     ((t (:foreground ,black/fg
+                      :background ,black/bg
+                      :underline nil
+                      :box nil
+                      :extend t))))
+   `(helm-source-header
+     ((t (:foreground ,black/fg
+                      :background ,black/bg
+                      :underline nil
+                      :weight bold
+                      :box (:line-width -1 :style released-button)
+                      :extend t))))
 
 
    `(font-lock-warning-face		((t (:foreground "red" :bold t))))
-   `(dired-directory ((t (:foreground ,black/strings))))))
+   `(dired-directory ((t (:foreground ,black/orange))))))
 
 ;;;###autoload
 (when load-file-name
