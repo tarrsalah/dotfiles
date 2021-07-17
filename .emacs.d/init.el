@@ -18,6 +18,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq shift-select-mode t)
 (global-linum-mode t)
+(global-hl-line-mode 0)
 
 (setq
  backup-by-copying t
@@ -76,10 +77,17 @@
   (package-install 'use-package))
 
 ;; themes
-(load "~/.emacs.d/white-theme.el")
-(load-theme 'white t)
-(set-face-attribute 'default nil :family "FiraCode")
+(add-to-list 'default-frame-alist '(background-color . "#ffffcc"))
 
+(defun keywordsless-font-lock ()
+  "Switch to compilaiton buffer."
+  (interactive)
+  (font-lock-mode)
+  (setq-local font-lock-keywords nil))
+
+(add-hook 'elixir-mode-hook 'keywordsless-font-lock)
+(add-hook 'go-mode-hook 'keywordsless-font-lock)
+(set-face-attribute 'default nil :family "FiraCode")
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 80))
 
@@ -92,8 +100,6 @@
 (setq dired-listing-switches
       "-laXGh1v --group-directories-first")
 
-
-
 ;; helm
 (use-package helm
   :ensure t
@@ -103,9 +109,10 @@
   :config
     (helm-mode 1))
 
-(defun my/helm-git-grep (not-all)
+(defun my/helm-git-grep (NOT-ALL)
+  "Helm git grep NOT-ALL."
   (interactive "P")
-  (helm-grep-git-1 default-directory (null not-all)))
+  (helm-grep-git-1 default-directory (null NOT-ALL)))
 
 (global-set-key (kbd "C-x r r") 'my/helm-git-grep)
 
@@ -117,6 +124,10 @@
     :config
     (helm-projectile-on))
 
+(eval-after-load 'helm
+  (lambda ()
+    (set-face-attribute
+     'helm-source-header nil :height 140 :background nil)))
 
 ;; company
 (use-package company
@@ -215,7 +226,7 @@
     (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
     (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))))
 
-;; prettire
+;; prettier
 (use-package prettier-js
     :ensure t)
 
