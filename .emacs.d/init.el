@@ -326,6 +326,29 @@
   (progn
     (add-to-list 'auto-mode-alist '("\\.yaml.dist\\'" . yaml-mode))))
 
+;; elgot
+(require 'project)
+
+(defun project-find-go-module (dir)
+  "Find go module in DIR."
+  (when-let ((root (locate-dominating-file dir "go.mod")))
+    (cons 'go-module root)))
+
+(cl-defmethod project-root ((project (head go-module)))
+  "Find PROJECT root."
+  (cdr project))
+
+(add-hook 'project-find-functions #'project-find-go-module)
+
+(use-package eglot
+  :ensure t)
+(add-hook 'go-mode-hook 'eglot-ensure)
+
+(defun eglot-format-buffer-on-save ()
+  "Format before save."
+  (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
+(add-hook 'go-mode-hook #'eglot-format-buffer-on-save)
+
 ;;; trun of debugging
 (setq debug-on-error nil)
 (setq debug-on-quit nil)
