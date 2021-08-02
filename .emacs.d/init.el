@@ -210,29 +210,7 @@
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
                         '(json-jsonlist)))
-  (flycheck-add-mode 'javascript-eslint 'web-mode)
-  (flycheck-add-mode 'javascript-eslint 'js2-mode))
-
-;; javascript
-(use-package js2-mode
-  :ensure t
-  :init
-  (progn
-    (add-hook 'js2-mode-hook (lambda () (setq js2-basic-offset 2)))
-    (setq js2-mode-show-parse-errors nil)
-    (setq js2-mode-show-strict-warnings nil)
-    (setq js2-strict-missing-semi-warning nil)
-    (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
-    (add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
-    (add-to-list 'auto-mode-alist '("\\.jsx$" . js2-mode))))
-
-(use-package xref-js2
-  :ensure t
-  :init
-  (progn
-    (define-key js2-mode-map (kbd "M-.") nil)
-    (add-hook 'js2-mode-hook (lambda ()
-                               (add-hook 'xref-backend-functions #'xref-js2-xref-backend nil t)))))
+  (flycheck-add-mode 'javascript-eslint 'web-mode))
 
 ;; prettier
 (use-package prettier-js
@@ -272,6 +250,7 @@
   :config
   (progn
     (setq web-mode-enable-auto-indentation nil)
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
@@ -289,7 +268,6 @@
   :config
   (progn
     (add-hook 'web-mode-hook 'emmet-mode)
-    (add-hook 'js2-mode 'emmet-mode)
     (add-hook 'html-mode-hook 'emmet-mode)
     (add-hook 'css-mode 'emmet-mode)
     (add-hook 'less-css-mode 'emmet-mode)))
