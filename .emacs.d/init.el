@@ -78,18 +78,10 @@
 
 ;; themes
 (add-to-list 'default-frame-alist '(background-color . "#ffffcc"))
-
-(defun keywordsless-font-lock ()
-  "Switch to compilaiton buffer."
-  (interactive)
-  (font-lock-mode)
-  (setq-local font-lock-keywords nil))
-
-(add-hook 'elixir-mode-hook 'keywordsless-font-lock)
-(add-hook 'go-mode-hook 'keywordsless-font-lock)
 (set-face-attribute 'default nil :family "FiraCode")
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 80))
+(add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 ;; dired
 (add-hook 'dired-load-hook
