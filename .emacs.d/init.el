@@ -330,6 +330,10 @@
   :ensure t)
 (add-hook 'go-mode-hook 'eglot-ensure)
 
+
+;;; org-mode
+(require 'org)
+
 (defun eglot-format-buffer-on-save ()
   "Format before save."
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
