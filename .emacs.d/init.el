@@ -77,7 +77,6 @@
   (package-install 'use-package))
 
 ;; themes
-(add-to-list 'default-frame-alist '(background-color . "#ffffcc"))
 (set-face-attribute 'default nil :family "FiraCode")
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 80))
