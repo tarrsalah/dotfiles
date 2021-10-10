@@ -110,11 +110,6 @@
 (use-package helm-ag
     :ensure t)
 
-(use-package helm-projectile
-    :ensure t
-    :config
-    (helm-projectile-on))
-
 (eval-after-load 'helm
   (lambda ()
     (set-face-attribute
