@@ -85,11 +85,21 @@
 ;; dired
 (add-hook 'dired-load-hook
           '(lambda () (require 'dired-x)))
+
+(add-hook 'dired-mode-hook
+      (lambda ()
+        (dired-hide-details-mode)))
+
+
 (setq dired-omit-mode t)
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|__pycache__|\\.php_cs.cache$")
 (put 'dired-find-alternate-file 'disabled nil)
 (setq dired-listing-switches
       "-laXGh1v --group-directories-first")
+
+(eval-after-load "dired"
+  '(progn
+     (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)))
 
 ;; helm
 (use-package helm
