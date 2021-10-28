@@ -40,15 +40,21 @@
 (define-coding-system-alias 'UTF-8 'utf-8)
 
 ;; compilation
+(require 'compile)
+(setq compilation-always-kill t)
+(setq compilation-scroll-output t)
 (defun my/switch-to-compilation()
     "Switch to compilaiton buffer."
     (interactive)
     (switch-to-buffer "*compilation*"))
 
-(setq compilation-always-kill t)
-(setq compilation-scroll-output t)
 (add-hook 'compilation-mode-hook 'my/switch-to-compilation)
 (global-set-key (kbd "C-x c") 'my/switch-to-compilation)
+
+(add-to-list 'compilation-error-regexp-alist 'elixir)
+(add-to-list 'compilation-error-regexp-alist-alist
+             '(elixir "^\s\\(.*\\):\\([0-9]+\\):" 1 2))
+
 
 (require 'ansi-color)
 (add-hook 'compilation-filter-hook
