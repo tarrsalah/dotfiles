@@ -6,7 +6,7 @@ prepare:
 	mkdir -p ~/src/github.com/tarrsalah ~/local ~/pkg ~/bin
 	sudo apt-add-repository ppa:git-core/ppa
 	sudo apt update
-	sudo apt install vim tmux zsh git emacs27 meld silversearcher-ag inotify-tools
+	sudo apt install vim tmux zsh git emacs meld silversearcher-ag inotify-tools
 
 .PHONY: install
 install:
