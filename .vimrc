@@ -42,6 +42,9 @@ nmap <Leader>gr <Plug>(coc-references)
 nmap <C-p> :GitFiles<CR>
 nmap <C-b> :Buffers<CR>
 
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
