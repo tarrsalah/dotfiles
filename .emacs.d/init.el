@@ -84,6 +84,7 @@
 
 ;; themes
 (set-face-attribute 'default nil :family "FiraCode")
+(add-to-list 'default-frame-alist '(background-color . "#ffffdd"))
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 80))
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
@@ -222,6 +223,11 @@
 (use-package go-mode
   :ensure t)
 
+;; python
+(use-package pyvenv
+  :ensure t
+  :config
+  (pyvenv-mode 1))
 
 ;; typescript
 (use-package typescript-mode
