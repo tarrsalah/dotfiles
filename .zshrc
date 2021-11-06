@@ -54,3 +54,5 @@ conda_setup() {
     fi
     unset __conda_setup
 }
+
+stty -ixon
