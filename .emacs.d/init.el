@@ -84,7 +84,6 @@
 
 ;; themes
 (set-face-attribute 'default nil :family "FiraCode")
-(add-to-list 'default-frame-alist '(background-color . "#ffffdd"))
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 80))
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
@@ -320,6 +319,10 @@
   (progn
     (add-to-list 'auto-mode-alist '("\\.yaml.dist\\'" . yaml-mode))))
 
+;; sqlformat
+(use-package sqlformat
+  :ensure t)
+
 ;; elgot
 (require 'project)
 
@@ -362,3 +365,4 @@
 
 (provide 'init)
 ;;; init.el ends here
+(put 'erase-buffer 'disabled nil)
