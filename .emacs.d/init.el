@@ -19,6 +19,7 @@
 (setq shift-select-mode t)
 (global-linum-mode t)
 (global-hl-line-mode 0)
+(setq case-fold-search nil)
 
 (setq
  backup-by-copying t
