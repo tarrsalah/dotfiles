@@ -215,6 +215,10 @@
                         '(json-jsonlist)))
   (flycheck-add-mode 'javascript-eslint 'web-mode))
 
+
+;; js-mode
+(setq js-indent-level 2)
+
 ;; prettier
 (use-package prettier-js
     :ensure t)
@@ -239,7 +243,11 @@
 
 
 ;; erlang
-(setq erlang-electric-commands '())
+(use-package erlang
+  :ensure t
+  :config
+  (setq erlang-electric-commands '())
+  (add-hook 'erlang-mode-hook '(lambda() (setq indent-tabs-mode nil))))
 
 ;; elixir
 (use-package elixir-mode
