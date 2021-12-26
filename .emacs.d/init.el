@@ -85,6 +85,9 @@
 
 ;; themes
 (set-face-attribute 'default nil :family "FiraCode")
+(add-to-list 'default-frame-alist '(background-color . "#000"))
+(add-to-list 'default-frame-alist '(foreground-color . "#eee"))
+
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 80))
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
@@ -267,7 +270,6 @@
   (progn
     (setq web-mode-enable-auto-indentation nil)
     (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
-    (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
