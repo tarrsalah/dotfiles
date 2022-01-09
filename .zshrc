@@ -56,3 +56,6 @@ conda_setup() {
 }
 
 stty -ixon
+stty start undef
+stty stop undef
+setopt noflowcontrol
