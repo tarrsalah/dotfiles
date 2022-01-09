@@ -85,11 +85,15 @@
 
 ;; themes
 (set-face-attribute 'default nil :family "FiraCode")
-(add-to-list 'default-frame-alist '(background-color . "#000"))
-(add-to-list 'default-frame-alist '(foreground-color . "#eee"))
+(add-to-list 'default-frame-alist '(background-color . "#000000"))
+(add-to-list 'default-frame-alist '(foreground-color . "#eaeaea"))
+(add-to-list 'default-frame-alist '(comment-color . "#969896"))
+(add-to-list 'default-frame-alist '(selection-color . "424242"))
+
 
 (add-to-list 'default-frame-alist '(height . 40))
 (add-to-list 'default-frame-alist '(width . 80))
+(set-face-attribute 'mode-line nil  :height 120)
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 ;; dired
