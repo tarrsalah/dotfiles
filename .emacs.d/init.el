@@ -85,10 +85,10 @@
 
 ;; themes
 (set-face-attribute 'default nil :family "FiraCode")
-(add-to-list 'default-frame-alist '(background-color . "#000000"))
+(add-to-list 'default-frame-alist '(background-color . "#1a1a1a"))
 (add-to-list 'default-frame-alist '(foreground-color . "#eaeaea"))
-(add-to-list 'default-frame-alist '(comment-color . "#969896"))
-(add-to-list 'default-frame-alist '(selection-color . "424242"))
+(set-face-attribute 'default nil :height 120)
+(add-hook 'window-setup-hook 'toggle-frame-maximized t)
 
 
 (add-to-list 'default-frame-alist '(height . 40))
