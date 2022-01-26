@@ -37,8 +37,9 @@
 
 (setq initial-scratch-message ""
       inhibit-startup-message t)
-
 (define-coding-system-alias 'UTF-8 'utf-8)
+(set-face-attribute 'default nil :height 140)
+(add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 ;; compilation
 (require 'compile)
@@ -55,7 +56,6 @@
 (add-to-list 'compilation-error-regexp-alist 'elixir)
 (add-to-list 'compilation-error-regexp-alist-alist
              '(elixir "^\s\\(.*\\):\\([0-9]+\\):" 1 2))
-
 
 (require 'ansi-color)
 (add-hook 'compilation-filter-hook
@@ -82,19 +82,6 @@
 
 (unless (package-installed-p 'use-package)
   (package-install 'use-package))
-
-;; themes
-(set-face-attribute 'default nil :family "FiraCode")
-(add-to-list 'default-frame-alist '(background-color . "#1a1a1a"))
-(add-to-list 'default-frame-alist '(foreground-color . "#eaeaea"))
-(set-face-attribute 'default nil :height 120)
-(add-hook 'window-setup-hook 'toggle-frame-maximized t)
-
-
-(add-to-list 'default-frame-alist '(height . 40))
-(add-to-list 'default-frame-alist '(width . 80))
-(set-face-attribute 'mode-line nil  :height 120)
-(add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 ;; dired
 (add-hook 'dired-load-hook
