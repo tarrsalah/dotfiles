@@ -142,3 +142,6 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/local/go/bin"
 export GO111MODULE="auto"
+
+export HISTFILESIZE=10000
+shopt -s histappend
