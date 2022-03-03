@@ -36,7 +36,11 @@
 (setq mode-require-final-newline t)
 
 (setq initial-scratch-message ""
-      inhibit-startup-message t)
+      inhibit-startup-message t
+      initial-major-mode 'text-mode)
+
+(setq-default header-line-format mode-line-format)
+
 (define-coding-system-alias 'UTF-8 'utf-8)
 (set-face-attribute 'default nil :height 140)
 
