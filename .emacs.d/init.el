@@ -45,7 +45,7 @@
 (set-face-attribute 'default nil :height 140)
 
 (set-face-foreground 'default "#fff")
-(set-face-background 'default "#111")
+(set-face-background 'default "#1d1f21")
 (set-face-background 'isearch "#c60")
 (set-face-foreground 'isearch "#eee")
 (set-face-background 'lazy-highlight "#960")
