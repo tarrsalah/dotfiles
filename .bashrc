@@ -139,9 +139,13 @@ export PS1="{\u}:${Bold}$\w${LightRed}\$(parse_git_branch)\n ${LightCyan}λ ${NC
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 # Go
+export GOPATH="$HOME/src"
+export GOBIN="$HOME/bin"
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/local/go/bin"
 export GO111MODULE="auto"
 
 export HISTFILESIZE=10000
 shopt -s histappend
+
+export PROMPT_COMMAND="history -a; history -n"
