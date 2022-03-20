@@ -45,7 +45,7 @@
 (set-face-attribute 'default nil :height 140)
 
 (set-face-foreground 'default "#fff")
-(set-face-background 'default "#1d1f21")
+(set-face-background 'default "#000")
 (set-face-background 'isearch "#c60")
 (set-face-foreground 'isearch "#eee")
 (set-face-background 'lazy-highlight "#960")
@@ -59,13 +59,6 @@
 (require 'compile)
 (setq compilation-always-kill t)
 (setq compilation-scroll-output t)
-(defun my/switch-to-compilation()
-    "Switch to compilaiton buffer."
-    (interactive)
-    (switch-to-buffer "*compilation*"))
-
-(add-hook 'compilation-mode-hook 'my/switch-to-compilation)
-(global-set-key (kbd "C-x c") 'my/switch-to-compilation)
 
 (add-to-list 'compilation-error-regexp-alist 'elixir)
 (add-to-list 'compilation-error-regexp-alist-alist
@@ -115,6 +108,13 @@
 (eval-after-load "dired"
   '(progn
      (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)))
+
+
+;; ido-completing-read+
+(use-package ido-completing-read+
+  :ensure t
+  :config
+  (ido-ubiquitous-mode 1))
 
 ;; helm
 (use-package helm
