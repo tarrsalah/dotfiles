@@ -274,7 +274,6 @@
   :config
   (progn
     (setq web-mode-enable-auto-indentation nil)
-    (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.twig\\'" . web-mode))
     (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
@@ -356,10 +355,19 @@
 (use-package eglot
   :ensure t)
 (add-hook 'go-mode-hook 'eglot-ensure)
+(add-hook 'typescript-mode-hook 'eglot-ensure)
+(add-hook 'javascript-mode-hook 'eglot-ensure)
+(add-hook 'js-mode-hook 'eglot-ensure)
+
 
 
 ;;; org-mode
 (require 'org)
+
+;;; babel-mode
+(org-babel-do-load-languages
+      'org-babel-load-languages
+      '((js . t)))
 
 (defun eglot-format-buffer-on-save ()
   "Format before save."
