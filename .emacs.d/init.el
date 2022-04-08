@@ -231,6 +231,11 @@
 (use-package prettier-js
     :ensure t)
 
+(eval-after-load 'typescript-mode
+    '(progn
+       (add-hook 'typescript-mode-hook #'add-node-modules-path)
+       (add-hook 'typescript-mode-hook #'prettier-js-mode)))
+
 ;; golang
 (use-package go-mode
   :ensure t)
@@ -260,6 +265,7 @@
   (setq flycheck-check-syntax-automatically '(save mode-enabled))
   (eldoc-mode +1)
   (tide-hl-identifier-mode +1)
+  (setq tide-always-show-documentation t)
   ;; company is an optional dependency. You have to
   ;; install it separately via package-install
   ;; `M-x package-install [ret] company`
