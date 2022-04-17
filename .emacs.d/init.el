@@ -12,7 +12,7 @@
 (show-paren-mode 1)
 (delete-selection-mode 1)
 (global-hl-line-mode 1)
-(global-auto-revert-mode)
+(setq auto-save-default nil)
 (electric-pair-mode 1)
 (electric-indent-mode 0)
 (fset 'yes-or-no-p 'y-or-n-p)
@@ -20,15 +20,8 @@
 (global-linum-mode t)
 (global-hl-line-mode 0)
 (setq case-fold-search nil)
-
-(setq
- backup-by-copying t
- backup-directory-alist
- '(("." . "~/.saves"))
- delete-old-versions t
- kept-new-versions 6
- kept-old-versions 6
- version-control t)
+(setq make-backup-files nil)
+(setq create-lockfiles nil)
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
