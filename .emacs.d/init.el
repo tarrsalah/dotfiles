@@ -35,7 +35,8 @@
 (setq-default header-line-format mode-line-format)
 
 (define-coding-system-alias 'UTF-8 'utf-8)
-(set-face-attribute 'default nil :height 160)
+
+(set-face-attribute 'default nil :font "FiraCode-14" )
 
 (set-face-foreground 'default "#fff")
 (set-face-background 'default "#000")
