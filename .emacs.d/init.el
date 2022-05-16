@@ -31,21 +31,18 @@
 (setq initial-scratch-message ""
       inhibit-startup-message t
       initial-major-mode 'text-mode)
-
-(setq-default header-line-format mode-line-format)
-
 (define-coding-system-alias 'UTF-8 'utf-8)
 
-(set-face-attribute 'default nil :font "FiraCode-14" )
+(set-face-attribute 'default nil :font "FiraCode-13" )
 
-(set-face-foreground 'default "#fff")
+(set-face-foreground 'default "#d4d4d4")
+;; (set-face-background 'default "#1e1e1e")
 (set-face-background 'default "#000")
 (set-face-background 'isearch "#c60")
 (set-face-foreground 'isearch "#eee")
 (set-face-background 'lazy-highlight "#960")
 (set-face-foreground 'lazy-highlight "#ccc")
 (set-face-foreground 'font-lock-comment-face "#fc0")
-
 
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
@@ -221,14 +218,20 @@
 ;; js-mode
 (setq js-indent-level 2)
 
+;; js-comint
+(use-package js-comint
+  :config
+  (setq inferior-js-program-command "nodejs")
+  (setenv "NODE_NO_READLINE" "1"))
+
+
 ;; prettier
 (use-package prettier-js
     :ensure t)
 
 (eval-after-load 'typescript-mode
     '(progn
-       (add-hook 'typescript-mode-hook #'add-node-modules-path)
-       (add-hook 'typescript-mode-hook #'prettier-js-mode)))
+       (add-hook 'typescript-mode-hook #'add-node-modules-path)))
 
 ;; golang
 (use-package go-mode
@@ -269,8 +272,6 @@
 (setq company-tooltip-align-annotations t)
 
 ;; formats the buffer before saving
-(add-hook 'before-save-hook 'tide-format-before-save)
-
 (add-hook 'typescript-mode-hook #'setup-tide-mode)
 
 
