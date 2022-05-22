@@ -36,7 +36,6 @@
 (set-face-attribute 'default nil :font "FiraCode-13" )
 
 (set-face-foreground 'default "#d4d4d4")
-;; (set-face-background 'default "#1e1e1e")
 (set-face-background 'default "#000")
 (set-face-background 'isearch "#c60")
 (set-face-foreground 'isearch "#eee")
@@ -251,28 +250,12 @@
     (setq-default typescript-indent-level 2)
     (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))))
 
-(use-package tide :ensure t)
 (use-package company :ensure t)
 (use-package flycheck :ensure t)
-
-(defun setup-tide-mode ()
-  (interactive)
-  (tide-setup)
-  (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(save mode-enabled))
-  (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
-  (setq tide-always-show-documentation t)
-  ;; company is an optional dependency. You have to
-  ;; install it separately via package-install
-  ;; `M-x package-install [ret] company`
-  (company-mode +1))
 
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
 
-;; formats the buffer before saving
-(add-hook 'typescript-mode-hook #'setup-tide-mode)
 
 
 ;; erlang
@@ -377,11 +360,15 @@
 
 (add-hook 'project-find-functions #'project-find-go-module)
 
-(use-package eglot
-  :ensure t)
-(add-hook 'go-mode-hook 'eglot-ensure)
-
-
+;;; lsp-mode
+(use-package lsp-mode
+  :init
+  (setq lsp-keymap-prefix "C-c l")
+  :hook (
+         (typescript-mode . lsp)
+         (go-mode . lsp)
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
 
 ;;; org-mode
 (require 'org)
@@ -394,6 +381,7 @@
 (defun eglot-format-buffer-on-save ()
   "Format before save."
   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
+
 (add-hook 'go-mode-hook #'eglot-format-buffer-on-save)
 
 ;;; trun of debugging
