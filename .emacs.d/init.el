@@ -36,13 +36,14 @@
 (set-face-attribute 'default nil :font "FiraCode-13" )
 
 (set-face-foreground 'default "#d4d4d4")
+(set-face-foreground 'font-lock-string-face "#d4d4d4")
 (set-face-background 'default "#000")
+(set-face-background 'hl-line "#333")
 (set-face-background 'isearch "#c60")
 (set-face-foreground 'isearch "#eee")
 (set-face-background 'lazy-highlight "#960")
 (set-face-foreground 'lazy-highlight "#ccc")
 (set-face-foreground 'font-lock-comment-face "#fc0")
-
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 ;; compilation
