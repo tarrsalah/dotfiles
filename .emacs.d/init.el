@@ -385,6 +385,13 @@
 
 (add-hook 'go-mode-hook #'eglot-format-buffer-on-save)
 
+;;; term
+
+(use-package vterm
+  :ensure t
+  :config
+  (define-key vterm-mode-map (kbd "C-b") #'switch-to-buffer))
+
 ;;; trun of debugging
 (setq debug-on-error nil)
 (setq debug-on-quit nil)
