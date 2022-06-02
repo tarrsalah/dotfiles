@@ -150,6 +150,7 @@
   :ensure t
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c p o") 'projectile-run-vterm)
   (setq projectile-indexing-method 'alien)
   (setq projectile-switch-project-action 'projectile-dired)
   (add-to-list 'projectile-globally-ignored-directories "*deps")
@@ -376,8 +377,8 @@
 
 ;;; babel-mode
 (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((js . t)))
+ 'org-babel-load-languages
+ '((js . t)))
 
 (defun eglot-format-buffer-on-save ()
   "Format before save."
@@ -400,6 +401,8 @@
 ;; custom file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
+
+
 
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars)
