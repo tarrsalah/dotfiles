@@ -33,18 +33,19 @@
       initial-major-mode 'text-mode)
 (define-coding-system-alias 'UTF-8 'utf-8)
 
-(set-face-attribute 'default nil :font "FiraCode-13" )
+(set-face-attribute 'default nil :font "FiraCode-12" )
 
+;;; dark
 (set-face-foreground 'default "#d4d4d4")
-(set-face-foreground 'font-lock-string-face "#d4d4d4")
 (set-face-background 'default "#000")
-(set-face-background 'hl-line "#333")
-(set-face-background 'isearch "#c60")
-(set-face-foreground 'isearch "#eee")
-(set-face-background 'lazy-highlight "#960")
-(set-face-foreground 'lazy-highlight "#ccc")
-(set-face-foreground 'font-lock-comment-face "#fc0")
+(set-face-foreground 'font-lock-string-face "#d4d4d4")
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
+
+;;; white
+;; (set-face-foreground 'default "#000")
+;; (set-face-background 'default "#fff")
+;; (set-face-foreground 'font-lock-string-face "#000")
+;; (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 ;; compilation
 (require 'compile)
