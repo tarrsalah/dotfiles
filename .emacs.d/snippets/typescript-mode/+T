@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: +T
-# key: +T
-# --
-import * as T from '@effect-ts/core/Effect'
