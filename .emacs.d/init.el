@@ -36,9 +36,9 @@
 (set-face-attribute 'default nil :font "FiraCode-12" )
 
 ;;; dark
-(set-face-foreground 'default "#d4d4d4")
+(set-face-foreground 'default "#fff")
 (set-face-background 'default "#000")
-(set-face-foreground 'font-lock-string-face "#d4d4d4")
+(set-face-foreground 'font-lock-string-face "#fff")
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 ;;; white
