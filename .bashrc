@@ -149,3 +149,6 @@ export HISTFILESIZE=10000
 shopt -s histappend
 
 export PROMPT_COMMAND="history -a; history -n"
+
+# CDPATH
+export CDPATH="$CDPATH:$HOME/src/tcmlabs:$HOME/src/tcmlabs/war/apps"
