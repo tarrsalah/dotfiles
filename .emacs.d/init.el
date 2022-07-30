@@ -33,11 +33,11 @@
       initial-major-mode 'text-mode)
 (define-coding-system-alias 'UTF-8 'utf-8)
 
-(set-face-attribute 'default nil :font "FiraCode-12" )
+(set-face-attribute 'default nil :font "FiraCode-13" )
 
 ;;; dark
 (set-face-foreground 'default "#fff")
-(set-face-background 'default "#000")
+(set-face-background 'default "#121212")
 (set-face-foreground 'font-lock-string-face "#fff")
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
@@ -369,6 +369,7 @@
   (setq lsp-keymap-prefix "C-c l")
   :hook (
          (typescript-mode . lsp)
+         (js-mode . lsp)
          (go-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)

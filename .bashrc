@@ -152,3 +152,7 @@ export PROMPT_COMMAND="history -a; history -n"
 
 # CDPATH
 export CDPATH="$CDPATH:$HOME/src/tcmlabs:$HOME/src/tcmlabs/war/apps"
+
+
+export FLYCTL_INSTALL="$HOME/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
