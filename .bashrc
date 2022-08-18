@@ -145,14 +145,21 @@ export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/local/go/bin"
 export GO111MODULE="auto"
 
+# History
 export HISTFILESIZE=10000
 shopt -s histappend
-
 export PROMPT_COMMAND="history -a; history -n"
 
 # CDPATH
 export CDPATH="$CDPATH:$HOME/src/tcmlabs:$HOME/src/tcmlabs/war/apps"
 
 
+# fly
 export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
+
+
+# cabal
+export PATH="$HOME/.cabal/bin:$PATH"
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
