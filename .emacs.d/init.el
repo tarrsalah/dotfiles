@@ -33,7 +33,7 @@
       initial-major-mode 'text-mode)
 (define-coding-system-alias 'UTF-8 'utf-8)
 
-(set-face-attribute 'default nil :font "FiraCode-13" )
+(set-face-attribute 'default nil :font "FiraCode-12.5" )
 
 ;;; dark
 (set-face-foreground 'default "#fff")
@@ -211,7 +211,7 @@
   (add-hook 'after-init-hook #'global-flycheck-mode)
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
-                        '(javascript-jshint)))
+                        '(javascript-jshint haskell-stack-ghc haskell-ghc)))
 
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
