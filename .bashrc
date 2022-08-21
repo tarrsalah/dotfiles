@@ -162,4 +162,8 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 # cabal
 export PATH="$HOME/.cabal/bin:$PATH"
 
+# yarn
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# ghcup-env
+[ -f "/home/tarrsalah/.ghcup/env" ] && source "/home/tarrsalah/.ghcup/env"
