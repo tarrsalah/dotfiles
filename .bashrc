@@ -15,10 +15,6 @@ HISTCONTROL=ignoreboth
 # append to the history file, don't overwrite it
 shopt -s histappend
 
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
@@ -139,13 +135,13 @@ export PS1="{\u}:${Bold}$\w${LightRed}\$(parse_git_branch)\n ${LightCyan}λ ${NC
 export ERL_AFLAGS="-kernel shell_history enabled"
 
 # Go
-export GOPATH="$HOME/src"
 export GOBIN="$HOME/bin"
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$GOBIN"
 export PATH="$PATH:$HOME/local/go/bin"
 export GO111MODULE="auto"
 
 # History
+HISTSIZE=1000
 export HISTFILESIZE=10000
 shopt -s histappend
 export PROMPT_COMMAND="history -a; history -n"
@@ -157,7 +153,6 @@ export CDPATH="$CDPATH:$HOME/src/tcmlabs:$HOME/src/tcmlabs/war/apps"
 # fly
 export FLYCTL_INSTALL="$HOME/.fly"
 export PATH="$FLYCTL_INSTALL/bin:$PATH"
-
 
 # cabal
 export PATH="$HOME/.cabal/bin:$PATH"
