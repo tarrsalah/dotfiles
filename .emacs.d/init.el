@@ -239,6 +239,7 @@
 
 ;; golang
 (use-package go-mode
+  :config
   :ensure t)
 
 ;; python
@@ -370,6 +371,12 @@
   :init
   (setq lsp-keymap-prefix "C-c l")
   (setq lsp-enable-file-watchers nil)
+
+  (defun lsp-go-install-save-hooks ()
+    "Comment lsp-go-install-save-hooks."
+    (add-hook 'before-save-hook #'lsp-format-buffer t t)
+    (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
   :hook (
          (typescript-mode . lsp)
          (js-mode . lsp)
@@ -385,14 +392,7 @@
  'org-babel-load-languages
  '((js . t)))
 
-(defun eglot-format-buffer-on-save ()
-  "Format before save."
-  (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
-
-(add-hook 'go-mode-hook #'eglot-format-buffer-on-save)
-
-;;; term
-
+;;; vterm
 (use-package vterm
   :ensure t
   :config
