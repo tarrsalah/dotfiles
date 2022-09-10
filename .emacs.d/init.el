@@ -36,18 +36,18 @@
 (set-face-attribute 'default nil :font "FiraCode-14" )
 
 ;;; dark
-;; (set-face-foreground 'default "#fff")
-;; (set-face-background 'default "#121212")
-;; (set-face-foreground 'font-lock-string-face "#fff")
-;; (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
+(set-face-foreground 'default "#fff")
+(set-face-background 'default "#121212")
+(set-face-foreground 'font-lock-string-face "#fff")
+(add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 ;;; white
-(set-face-foreground 'default "#000")
-(set-face-background 'default "#ffffdd")
-(set-face-foreground 'font-lock-string-face "#000")
-(set-face-attribute 'highlight nil :background "#E8E8E8" :foreground 'unspecified)
-(set-face-attribute 'region nil :foreground 'unspecified :background "#bbffbb")
-(add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
+;; (set-face-foreground 'default "#000")
+;; (set-face-background 'default "#ffffee")
+;; (set-face-foreground 'font-lock-string-face "#000")
+;; (set-face-attribute 'highlight nil :background "#E8E8E8" :foreground 'unspecified)
+;; (set-face-attribute 'region nil :foreground 'unspecified :background "#bbffbb")
+;; (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 ;; compilation
 (require 'compile)

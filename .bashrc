@@ -162,3 +162,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # ghcup-env
 [ -f "/home/tarrsalah/.ghcup/env" ] && source "/home/tarrsalah/.ghcup/env"
+
+# cargo
+. "$HOME/.cargo/env"
