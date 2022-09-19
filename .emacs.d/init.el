@@ -154,6 +154,7 @@
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c p o") 'projectile-run-vterm)
+  (setq projectile-use-git-grep t)
   (setq projectile-indexing-method 'alien)
   (setq projectile-switch-project-action 'projectile-dired)
   (add-to-list 'projectile-globally-ignored-directories "*deps")
