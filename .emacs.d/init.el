@@ -264,8 +264,6 @@
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
 
-
-
 ;; erlang
 (use-package erlang
   :ensure t
@@ -279,6 +277,20 @@
   :config
   (add-hook 'elixir-mode-hook
             (lambda () (add-hook 'before-save-hook 'elixir-format nil t))))
+
+;; haskell
+(use-package haskell-mode
+  :ensure t
+  :config
+  (add-hook 'haskell-mode-hook 'turn-on-haskell-indent))
+
+(use-package lsp-haskell
+  :ensure t
+  :config
+  (add-hook 'haskell-mode-hook #'lsp)
+  (add-hook 'haskell-literate-mode-hook #'lsp))
+
+
 
 ;; web-mode
 (use-package web-mode
