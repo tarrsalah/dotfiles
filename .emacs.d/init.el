@@ -153,7 +153,7 @@
   :ensure t
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (define-key projectile-mode-map (kbd "C-c p o") 'projectile-run-vterm)
+  (define-key projectile-mode-map (kbd "C-c p o") 'multi-vterm-project)
   (setq projectile-use-git-grep t)
   (setq projectile-indexing-method 'alien)
   (setq projectile-switch-project-action 'projectile-dired)
@@ -245,10 +245,13 @@
   :ensure t)
 
 ;; python
-(use-package pyvenv
+(use-package pyenv-mode
   :ensure t
+  :init
+  (add-to-list 'exec-path "~/.pyenv/shims")
+  (setenv "WORKON_HOME" "~/.pyenv/versions/")
   :config
-  (pyvenv-mode 1))
+  (pyenv-mode))
 
 ;; typescript
 (use-package typescript-mode
@@ -394,6 +397,7 @@
   :hook (
          (typescript-mode . lsp)
          (js-mode . lsp)
+         (python-mode . lsp)
          (go-mode . lsp)
          (lsp-mode . lsp-enable-which-key-integration))
   :commands lsp)
@@ -411,6 +415,11 @@
   :ensure t
   :config
   (define-key vterm-mode-map (kbd "C-b") #'switch-to-buffer))
+
+
+;;; vterm
+(use-package multi-vterm
+  :ensure t)
 
 ;;; trun of debugging
 (setq debug-on-error nil)
