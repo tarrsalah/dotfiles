@@ -27,27 +27,29 @@
 (setq-default tab-width 4)
 (setq indent-line-function 'insert-tab)
 (setq mode-require-final-newline t)
-
+(setq-default fill-column 80)
 (setq initial-scratch-message ""
       inhibit-startup-message t
       initial-major-mode 'text-mode)
 (define-coding-system-alias 'UTF-8 'utf-8)
+(add-to-list 'default-frame-alist '(height . 124))
+(add-to-list 'default-frame-alist '(width . 180))
 
-(set-face-attribute 'default nil :font "FiraCode-14" )
-
+(set-face-attribute 'default nil :font "FiraCode-13.5")
 ;;; dark
-(set-face-foreground 'default "#fff")
-(set-face-background 'default "#121212")
-(set-face-foreground 'font-lock-string-face "#fff")
+;; (set-face-foreground 'default "#fff")
+;; (set-face-background 'default "#121212")
+;; (set-face-foreground 'font-lock-string-face "#fff")
+
+;; white
+(set-face-foreground 'default "#000")
+(set-face-background 'default "#fff")
+(set-face-foreground 'font-lock-string-face "#000")
+(set-face-attribute 'highlight nil :background "#E8E8E8" :foreground 'unspecified)
+(set-face-attribute 'region nil :foreground 'unspecified :background "#bbffbb")
+
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
-;;; white
-;; (set-face-foreground 'default "#000")
-;; (set-face-background 'default "#ffffee")
-;; (set-face-foreground 'font-lock-string-face "#000")
-;; (set-face-attribute 'highlight nil :background "#E8E8E8" :foreground 'unspecified)
-;; (set-face-attribute 'region nil :foreground 'unspecified :background "#bbffbb")
-;; (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 ;; compilation
 (require 'compile)
@@ -104,6 +106,17 @@
      (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)))
 
 
+;; global keys
+(global-set-key (kbd "C-x r r") 'my/helm-git-grep)
+(global-set-key (kbd "M-o") 'multi-vterm-project)
+(global-set-key (kbd "M-]") 'multi-vterm-next)
+(global-set-key (kbd "M-[") 'multi-vterm-prev)
+(global-set-key (kbd "M-p") 'ace-window)
+
+(use-package ace-window
+  :ensure t
+  :config)
+
 ;; ido-completing-read+
 (use-package ido-completing-read+
   :ensure t
@@ -124,7 +137,6 @@
   (interactive "P")
   (helm-grep-git-1 default-directory (null NOT-ALL)))
 
-(global-set-key (kbd "C-x r r") 'my/helm-git-grep)
 
 (use-package helm-ag
     :ensure t)
@@ -287,14 +299,6 @@
   :config
   (add-hook 'haskell-mode-hook 'turn-on-haskell-indent))
 
-(use-package lsp-haskell
-  :ensure t
-  :config
-  (add-hook 'haskell-mode-hook #'lsp)
-  (add-hook 'haskell-literate-mode-hook #'lsp))
-
-
-
 ;; web-mode
 (use-package web-mode
   :ensure t
@@ -415,7 +419,6 @@
   :ensure t
   :config
   (define-key vterm-mode-map (kbd "C-b") #'switch-to-buffer))
-
 
 ;;; vterm
 (use-package multi-vterm
