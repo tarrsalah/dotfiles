@@ -392,7 +392,9 @@
   :init
   (setq lsp-keymap-prefix "C-c l")
   (setq lsp-enable-file-watchers nil)
-
+  (setq lsp-idle-delay 0.500)
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
+  (setq gc-cons-threshold 100000000)
   (defun lsp-go-install-save-hooks ()
     "Comment lsp-go-install-save-hooks."
     (add-hook 'before-save-hook #'lsp-format-buffer t t)
