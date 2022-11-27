@@ -4,4 +4,6 @@
 .php_cs.cache
 /TAGS
 .tool-versions
+/.venv
+/__pycache__
 .org.org
