@@ -224,7 +224,7 @@
   (add-hook 'after-init-hook #'global-flycheck-mode)
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
-                        '(javascript-jshint haskell-stack-ghc haskell-ghc)))
+                        '(javascript-jshint haskell-stack-ghc haskell-ghc python-pylint)))
 
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
@@ -257,6 +257,16 @@
   :ensure t)
 
 ;; python
+(defun pyvenv-autoload ()
+  (require 'projectile)
+  (let* ((pdir (projectile-project-root)) (pfile (concat pdir ".venv")))
+    (if (file-exists-p pfile)
+        (pyvenv-workon (with-temp-buffer
+                         (insert-file-contents pfile)
+                         (nth 0 (split-string (buffer-string))))))))
+
+
+(add-hook 'python-mode-hook 'pyvenv-autoload)
 (use-package pyenv-mode
   :ensure t
   :init
