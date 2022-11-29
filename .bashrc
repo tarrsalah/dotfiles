@@ -127,6 +127,9 @@ NC="\[$(tput sgr0)\]" # No Color
 Bold="\[$(tput bold)\]"
 export PS1="{\u}:${Bold}$\w${LightRed}\$(parse_git_branch)\n ${LightCyan}λ ${NC}"
 
+
+export TERM=xterm-256color
+
 # asdf
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash

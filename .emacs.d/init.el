@@ -31,15 +31,21 @@
 (setq initial-scratch-message ""
       inhibit-startup-message t
       initial-major-mode 'text-mode)
+
 (define-coding-system-alias 'UTF-8 'utf-8)
-(add-to-list 'default-frame-alist '(height . 124))
-(add-to-list 'default-frame-alist '(width . 180))
 
 (set-face-attribute 'default nil :font "FiraCode-13.5")
+
 ;;; dark
-;; (set-face-foreground 'default "#fff")
-;; (set-face-background 'default "#121212")
-;; (set-face-foreground 'font-lock-string-face "#fff")
+(set-face-foreground 'default "#fff")
+(set-face-background 'default "#121212")
+(set-face-foreground 'font-lock-string-face "#fff")
+(set-face-attribute 'hl-line nil :inherit nil :background "#212121")
+
+(custom-set-faces
+ '(ansi-color-blue ((t (:background "deep sky blue" :foreground "deep sky blue")))))
+
+
 
 ;; white
 (set-face-foreground 'default "#000")
@@ -105,13 +111,10 @@
   '(progn
      (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)))
 
-
 ;; global keys
 (global-set-key (kbd "C-x r r") 'my/helm-git-grep)
 (global-set-key (kbd "M-o") 'multi-vterm-project)
-(global-set-key (kbd "M-]") 'multi-vterm-next)
-(global-set-key (kbd "M-[") 'multi-vterm-prev)
-(global-set-key (kbd "M-p") 'ace-window)
+(global-set-key (kbd "M-0") 'projectile-repeat-last-command)
 
 (use-package ace-window
   :ensure t
@@ -224,7 +227,7 @@
   (add-hook 'after-init-hook #'global-flycheck-mode)
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
-                        '(javascript-jshint haskell-stack-ghc haskell-ghc python-pylint)))
+                        '(javascript-jshint haskell-stack-ghc haskell-ghc python-pylint python-flake8)))
 
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
@@ -234,13 +237,6 @@
 
 ;; js-mode
 (setq js-indent-level 2)
-
-;; js-comint
-(use-package js-comint
-  :config
-  (setq inferior-js-program-command "nodejs")
-  (setenv "NODE_NO_READLINE" "1"))
-
 
 ;; prettier
 (use-package prettier-js
@@ -257,15 +253,6 @@
   :ensure t)
 
 ;; python
-(defun pyvenv-autoload ()
-  (require 'projectile)
-  (let* ((pdir (projectile-project-root)) (pfile (concat pdir ".venv")))
-    (if (file-exists-p pfile)
-        (pyvenv-workon (with-temp-buffer
-                         (insert-file-contents pfile)
-                         (nth 0 (split-string (buffer-string))))))))
-
-
 (add-hook 'python-mode-hook 'pyvenv-autoload)
 (use-package pyenv-mode
   :ensure t
@@ -383,7 +370,7 @@
 (use-package sqlformat
   :ensure t)
 
-;; elgot
+;; project
 (require 'project)
 
 (defun project-find-go-module (dir)
@@ -396,27 +383,6 @@
   (cdr project))
 
 (add-hook 'project-find-functions #'project-find-go-module)
-
-;;; lsp-mode
-(use-package lsp-mode
-  :init
-  (setq lsp-keymap-prefix "C-c l")
-  (setq lsp-enable-file-watchers nil)
-  (setq lsp-idle-delay 0.500)
-  (setq read-process-output-max (* 1024 1024)) ;; 1mb
-  (setq gc-cons-threshold 100000000)
-  (defun lsp-go-install-save-hooks ()
-    "Comment lsp-go-install-save-hooks."
-    (add-hook 'before-save-hook #'lsp-format-buffer t t)
-    (add-hook 'before-save-hook #'lsp-organize-imports t t))
-  (add-hook 'go-mode-hook #'lsp-go-install-save-hooks)
-  :hook (
-         (typescript-mode . lsp)
-         (js-mode . lsp)
-         (python-mode . lsp)
-         (go-mode . lsp)
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
 
 ;;; org-mode
 (require 'org)
@@ -444,8 +410,6 @@
 ;; custom file
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerror)
-
-
 
 ;; Local Variables:
 ;; byte-compile-warnings: (not free-vars)
