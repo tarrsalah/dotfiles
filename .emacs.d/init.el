@@ -149,6 +149,16 @@
     (set-face-attribute
      'helm-source-header nil :height 140 :background nil)))
 
+;; eglot
+(require 'eglot)
+
+(add-hook 'python-mode-hook 'eglot-ensure)
+
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '(python-mode . ("pylsp"))))
+
+
 ;; company
 (use-package company
   :ensure t
@@ -227,11 +237,7 @@
   (add-hook 'after-init-hook #'global-flycheck-mode)
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
-                        '(javascript-jshint haskell-stack-ghc haskell-ghc python-pylint python-flake8)))
-
-  (setq-default flycheck-disabled-checkers
-                (append flycheck-disabled-checkers
-                        '(json-jsonlist)))
+                        '(javascript-jshint haskell-stack-ghc haskell-ghc python-pylint python-pyright)))
   (flycheck-add-mode 'javascript-eslint 'web-mode))
 
 
@@ -258,9 +264,9 @@
   :ensure t
   :init
   (add-to-list 'exec-path "~/.pyenv/shims")
-  (setenv "WORKON_HOME" "~/.pyenv/versions/")
   :config
-  (pyenv-mode))
+  (pyvenv-mode 1)
+  (pyvenv-tracking-mode 1))
 
 ;; typescript
 (use-package typescript-mode

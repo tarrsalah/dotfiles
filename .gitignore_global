@@ -4,6 +4,7 @@
 .php_cs.cache
 /TAGS
 .tool-versions
+.dir-locals.el
 /.venv
 /__pycache__
 .org.org
