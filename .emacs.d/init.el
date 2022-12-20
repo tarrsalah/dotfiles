@@ -151,6 +151,7 @@
 
 ;; eglot
 (require 'eglot)
+(define-key eglot-mode-map (kbd "C-c l r") #'eglot-rename)
 
 (add-hook 'python-mode-hook 'eglot-ensure)
 
