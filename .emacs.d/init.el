@@ -31,27 +31,30 @@
 
 (define-coding-system-alias 'UTF-8 'utf-8)
 
-(set-face-attribute 'default nil :font "FiraCode-13.5")
+(setq server-socket-dir "~/.emacs.d/server")
 
 ;;; dark
-(set-face-foreground 'default "#fff")
+(set-face-foreground 'default "#f4f4f4")
 (set-face-background 'default "#121212")
-(set-face-foreground 'font-lock-string-face "#fff")
-(set-face-attribute 'hl-line nil :inherit nil :background "#212121")
+;; (set-face-attribute 'hl-line nil :inherit nil :background "#212121")
+;; (set-face-foreground 'font-lock-string-face "#fff")
 
 (custom-set-faces
  '(ansi-color-blue ((t (:background "deep sky blue" :foreground "deep sky blue")))))
 
 
-
 ;; white
-(set-face-foreground 'default "#000")
-(set-face-background 'default "#fff")
-(set-face-foreground 'font-lock-string-face "#000")
-(set-face-attribute 'highlight nil :background "#E8E8E8" :foreground 'unspecified)
-(set-face-attribute 'region nil :foreground 'unspecified :background "#bbffbb")
+;; (set-face-foreground 'default "#000")
+;; (set-face-background 'default "#ffffdd")
+;; (set-face-foreground 'font-lock-string-face "#000")
+;; (set-face-attribute 'highlight nil :background "#E8E8E8" :foreground 'unspecified)[]
+;; (set-face-attribute 'region nil :foreground 'unspecified :background "#bbffbb")
 
+
+
+;; font size
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
+(set-face-attribute 'default nil :font "FiraCode-13.5")
 
 
 ;; compilation
