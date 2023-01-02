@@ -16,7 +16,6 @@
 (electric-indent-mode 0)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq shift-select-mode t)
-(display-line-numbers-mode t)
 (setq case-fold-search nil)
 (setq make-backup-files nil)
 (setq create-lockfiles nil)
@@ -54,6 +53,8 @@
 
 ;; font size
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
+(add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode 1)))
+
 (set-face-attribute 'default nil :font "FiraCode-13.5")
 
 
