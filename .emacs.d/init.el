@@ -180,7 +180,6 @@
   :ensure t
   :config
   (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-  (define-key projectile-mode-map (kbd "C-c p o") 'multi-vterm-project)
   (setq projectile-use-git-grep t)
   (setq projectile-indexing-method 'alien)
   (setq projectile-switch-project-action 'projectile-dired)
@@ -261,11 +260,11 @@
   :ensure t)
 
 ;; python
-(add-hook 'python-mode-hook 'pyvenv-autoload)
 (use-package pyenv-mode
   :ensure t
   :init
   (add-to-list 'exec-path "~/.pyenv/shims")
+  (add-to-list 'exec-path "~/.pyenv/bin/")
   :config
   (pyvenv-mode 1)
   (pyvenv-tracking-mode 1))
@@ -398,7 +397,7 @@
 ;;; babel-mode
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((js . t)))
+ '((js . t) (python . t)))
 
 ;;; vterm
 (use-package vterm
