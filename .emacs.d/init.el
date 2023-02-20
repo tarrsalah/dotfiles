@@ -418,7 +418,11 @@
 
 ;;; vterm
 (use-package multi-vterm
+  :custom multi-vterm-buffer-name "term"
   :ensure t)
+
+;;; gdb
+(setq-default gdb-display-io-nopopup t)
 
 ;;; trun of debugging
 (setq debug-on-error nil)
