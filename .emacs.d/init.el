@@ -216,7 +216,7 @@
   (add-hook 'after-init-hook #'global-flycheck-mode)
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
-                        '(javascript-jshint haskell-stack-ghc haskell-ghc python-pylint python-pyright)))
+                        '(javascript-jshint emacs-lisp-checkdoc haskell-stack-ghc haskell-ghc python-pylint python-pyright python-pycodestyle)))
   (flycheck-add-mode 'javascript-eslint 'web-mode))
 
 
