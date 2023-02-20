@@ -30,6 +30,15 @@
 (define-coding-system-alias 'UTF-8 'utf-8)
 (setq server-socket-dir "~/.emacs.d/server")
 
+;; Set path to dependencies
+(setq site-lisp-dir
+      (expand-file-name "site-lisp" user-emacs-directory))
+(add-to-list 'load-path site-lisp-dir)
+
+(dolist (project (directory-files site-lisp-dir t "\\w+"))
+  (when (file-directory-p project)
+    (add-to-list 'load-path project)))
+
 ;; theme
 (set-face-background 'default "#ffffee")
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
@@ -90,9 +99,10 @@
   '(progn
      (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)))
 
+(require 'multi-shell)
 ;; global keys
 (global-set-key (kbd "C-x r r") 'my/helm-git-grep)
-(global-set-key (kbd "M-o") 'multi-vterm-project)
+(global-set-key (kbd "M-o") 'multi-shell-project)
 (global-set-key (kbd "M-0") 'projectile-repeat-last-command)
 
 (use-package ace-window

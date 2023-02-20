@@ -1,0 +1,3 @@
+[submodule ".emacs.d/site-lisp/multi-shell"]
+	path = .emacs.d/site-lisp/multi-shell
+	url = git@github.com:tarrsalah/multi-shell.git
