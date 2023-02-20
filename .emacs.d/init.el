@@ -130,14 +130,20 @@
 
 ;; eglot
 (require 'eglot)
+
 (define-key eglot-mode-map (kbd "C-c l r") #'eglot-rename)
+(define-key eglot-mode-map (kbd "C-c l l") #'eldoc)
+(setq eglot-ignored-server-capabilities '(:documentHighlightProvider))
 
 (add-hook 'python-mode-hook 'eglot-ensure)
+(add-hook 'js-mode-hook 'eglot-ensure)
 
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
-               '(python-mode . ("pylsp"))))
+               '(python-mode . ("pylsp")) '(js-mode . ("typescript-language-server"))))
 
+;; eldoc
+(setq eldoc-echo-area-use-multiline-p nil)
 
 ;; company
 (use-package company
@@ -205,8 +211,11 @@
   (setq exec-path-from-shell-arguments '("-i"))
   (exec-path-from-shell-initialize))
 
+(savehist-mode)
+
 (exec-path-from-shell-copy-env "GOPATH")
 (exec-path-from-shell-copy-env "GO111MODULE")
+
 
 ;; flycheck
 (use-package flycheck
