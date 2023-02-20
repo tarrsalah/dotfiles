@@ -5,6 +5,9 @@
 /TAGS
 .tool-versions
 .dir-locals.el
-/.venv
+
+# python
 /__pycache__
+**.pyc
+/.venv/
 .org.org
