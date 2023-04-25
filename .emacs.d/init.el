@@ -250,6 +250,10 @@
     '(progn
        (add-hook 'typescript-mode-hook #'add-node-modules-path)))
 
+(use-package add-node-modules-path
+  :custom
+  (add-node-modules-path-command '("pnpm bin" "pnpm bin -w")))
+
 ;; golang
 (use-package go-mode
   :config
