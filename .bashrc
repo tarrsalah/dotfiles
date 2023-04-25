@@ -125,7 +125,7 @@ Yellow="\[$(tput setaf 2)\]"
 LightCyan="\[$(tput bold ; tput setaf 6)\]"
 NC="\[$(tput sgr0)\]" # No Color
 Bold="\[$(tput bold)\]"
-export PS1="{\u}:${Bold}$\w${LightRed}\$(parse_git_branch)\n ${LightCyan}λ ${NC}"
+export PS1="{\u}:${Bold}$\w\$(parse_git_branch)\nλ ${NC}"
 
 
 export TERM=xterm-256color
@@ -174,3 +174,8 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
+
+# pnpm
+export PNPM_HOME="/home/tarrsalah/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
