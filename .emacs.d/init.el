@@ -103,6 +103,8 @@
   '(progn
      (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)))
 
+
+;;; multi-shell
 (require 'multi-shell)
 ;; global keys
 (global-set-key (kbd "C-x r r") 'my/helm-git-grep)
@@ -243,7 +245,20 @@
   (flycheck-add-mode 'javascript-eslint 'web-mode))
 
 
+;; (defun spawn-shell (name)
+;;   "Invoke shell test"
+;;   (interactive "MName of shell buffer to create: ")
+;;   (pop-to-buffer (get-buffer-create (generate-new-buffer-name (concat "*" name "*"))))
+;;   (shell (current-buffer)))
+
+
+
 ;; js-mode
+(add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode)
+(eval-after-load 'js-mode
+  '(progn
+        (define-key js-mode-map (kbd "M-.") nil))))
+
 (setq js-indent-level 2)
 
 ;; prettier
@@ -371,13 +386,6 @@
     (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
     (yas-global-mode 1)))
 
-;; dump-jump
-(use-package dumb-jump
-  :ensure t
-  :config
-    (setq dumb-jump-prefer-searcher 'ag)
-    (add-hook 'xref-backend-functions #'dumb-jump-xref-activate))
-
 ;; pass
 (use-package pass
   :ensure t)
@@ -414,17 +422,6 @@
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((js . t) (python . t)))
-
-;;; vterm
-(use-package vterm
-  :ensure t
-  :config
-  (define-key vterm-mode-map (kbd "C-b") #'switch-to-buffer))
-
-;;; vterm
-(use-package multi-vterm
-  :custom multi-vterm-buffer-name "term"
-  :ensure t)
 
 ;;; gdb
 (setq-default gdb-display-io-nopopup t)
