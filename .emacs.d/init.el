@@ -40,7 +40,11 @@
     (add-to-list 'load-path project)))
 
 ;; theme
-(set-face-background 'default "#ffffee")
+;; (set-face-foreground 'default "#eaeaea")
+;; (set-face-background 'default "#000")
+
+;; (set-face-background 'default "#ffffee")
+
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode 1)))
 (set-face-attribute 'default nil :font "FiraCodeMedium-13.5")
