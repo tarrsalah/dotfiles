@@ -13,7 +13,7 @@
 (delete-selection-mode 1)
 (setq auto-save-default nil)
 (electric-pair-mode 1)
-(electric-indent-mode 0)
+(electric-indent-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq shift-select-mode t)
 (setq case-fold-search nil)
