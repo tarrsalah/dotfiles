@@ -153,10 +153,12 @@
 
 (add-hook 'python-mode-hook 'eglot-ensure)
 (add-hook 'js-mode-hook 'eglot-ensure)
+(add-hook 'typescript-mode-hook 'eglot-ensure)
 
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
-               '(python-mode . ("pylsp")) '(js-mode . ("typescript-language-server"))))
+               '(python-mode . ("pylsp"))
+               '(js-mode . ("typescript-language-server"))))
 
 ;; eldoc
 (setq eldoc-echo-area-use-multiline-p nil)
@@ -260,6 +262,7 @@
         (define-key js-mode-map (kbd "M-.") nil))))
 
 (setq js-indent-level 2)
+(setq typescript-indent-level 2)
 
 ;; prettier
 (use-package prettier-js
@@ -305,7 +308,6 @@
   :ensure t
   :config
   (progn
-    (setq-default typescript-indent-level 2)
     (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))))
 
 (use-package company :ensure t)
