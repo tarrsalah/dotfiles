@@ -11,3 +11,6 @@
 **.pyc
 /.venv/
 .org.org
+
+#vim
+*.swp

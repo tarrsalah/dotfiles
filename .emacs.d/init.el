@@ -39,11 +39,6 @@
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
-;; theme
-;; (set-face-foreground 'default "#eaeaea")
-;; (set-face-background 'default "#000")
-
-;; (set-face-background 'default "#ffffee")
 
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode 1)))
@@ -110,6 +105,8 @@
 (global-set-key (kbd "C-x r r") 'my/helm-git-grep)
 (global-set-key (kbd "M-o") 'multi-shell-project)
 (global-set-key (kbd "M-0") 'projectile-repeat-last-command)
+(global-set-key (kbd "C-.") 'end-of-buffer)
+(global-set-key (kbd "C-,") 'beginning-of-buffer)
 
 (use-package ace-window
   :ensure t
@@ -143,25 +140,6 @@
   (lambda ()
     (set-face-attribute
      'helm-source-header nil :height 140 :background nil)))
-
-;; eglot
-(require 'eglot)
-
-(define-key eglot-mode-map (kbd "C-c l r") #'eglot-rename)
-(define-key eglot-mode-map (kbd "C-c l l") #'eldoc)
-(setq eglot-ignored-server-capabilities '(:documentHighlightProvider))
-
-(add-hook 'python-mode-hook 'eglot-ensure)
-(add-hook 'js-mode-hook 'eglot-ensure)
-(add-hook 'typescript-mode-hook 'eglot-ensure)
-
-(with-eval-after-load 'eglot
-  (add-to-list 'eglot-server-programs
-               '(python-mode . ("pylsp"))
-               '(js-mode . ("typescript-language-server"))))
-
-;; eldoc
-(setq eldoc-echo-area-use-multiline-p nil)
 
 ;; company
 (use-package company
@@ -247,11 +225,11 @@
   (flycheck-add-mode 'javascript-eslint 'web-mode))
 
 
-;; (defun spawn-shell (name)
-;;   "Invoke shell test"
-;;   (interactive "MName of shell buffer to create: ")
-;;   (pop-to-buffer (get-buffer-create (generate-new-buffer-name (concat "*" name "*"))))
-;;   (shell (current-buffer)))
+(defun spawn-shell (name)
+  "Invoke shell test"
+  (interactive "MName of shell buffer to create: ")
+  (pop-to-buffer (get-buffer-create (generate-new-buffer-name (concat "*" name "*"))))
+  (shell (current-buffer)))
 
 
 
@@ -268,13 +246,14 @@
 (use-package prettier-js
     :ensure t)
 
-(eval-after-load 'typescript-mode
-    '(progn
-       (add-hook 'typescript-mode-hook #'add-node-modules-path)))
 
 (use-package add-node-modules-path
   :custom
-  (add-node-modules-path-command '("pnpm bin" "pnpm bin -w")))
+    (add-node-modules-path-command '("pnpm bin")))
+
+(eval-after-load 'typescript-mode
+  '(progn
+     (add-hook 'typescript-mode-hook #'add-node-modules-path)))
 
 ;; golang
 (use-package go-mode
