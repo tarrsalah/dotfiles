@@ -42,7 +42,8 @@
 
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 (add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode 1)))
-(set-face-attribute 'default nil :font "FiraCodeMedium-13.5")
+
+(set-face-attribute 'default nil :font "Monaco-18")
 
 ;; compilation
 (require 'compile)
@@ -80,6 +81,9 @@
   (package-install 'use-package))
 
 ;; dired
+(setq insert-directory-program "gls" dired-use-ls-dired t)
+(setq dired-listing-switches "-al --group-directories-first")
+
 (add-hook 'dired-load-hook
           '(lambda () (require 'dired-x)))
 
@@ -177,11 +181,6 @@
         (display-buffer buffer '(display-buffer-same-window))))
   (setq magit-completing-read-function 'magit-ido-completing-read))
 
-;; forge
-(use-package forge
-  :ensure t
-  :after magit)
-
 ;; popup kill ring
 (use-package popup-kill-ring
   :ensure t
@@ -266,7 +265,7 @@
   :ensure t
   :init
   (add-to-list 'exec-path "~/.pyenv/shims")
-  (add-to-list 'exec-path "~/.pyenv/bin/")
+  ;; (add-to-list 'exec-path "~/.pyenv/bin/")
   :config
   (pyvenv-mode 1)
   (pyvenv-tracking-mode 1))
