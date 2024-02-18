@@ -40,10 +40,10 @@
     (add-to-list 'load-path project)))
 
 
+;; white theme
+(set-face-background 'default "#ffffee")
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
-(add-hook 'prog-mode-hook (lambda () (display-line-numbers-mode 1)))
-
-(set-face-attribute 'default nil :font "Monaco-18")
+(set-face-attribute 'default nil :font "MonacoB-12" :weight 'semi-bold)
 
 ;; compilation
 (require 'compile)
@@ -107,7 +107,7 @@
 (require 'multi-shell)
 ;; global keys
 (global-set-key (kbd "C-x r r") 'my/helm-git-grep)
-(global-set-key (kbd "M-o") 'multi-shell-project)
+(global-set-key (kbd "C-<return>") 'multi-shell-project)
 (global-set-key (kbd "M-0") 'projectile-repeat-last-command)
 (global-set-key (kbd "C-.") 'end-of-buffer)
 (global-set-key (kbd "C-,") 'beginning-of-buffer)
@@ -227,7 +227,7 @@
 (defun spawn-shell (name)
   "Invoke shell test"
   (interactive "MName of shell buffer to create: ")
-  (pop-to-buffer (get-buffer-create (generate-new-buffer-name (concat "*" name "*"))))
+  (pop-to-buffer (get-buffer-create (generate-new-buffer-name (concat "**shell - " name "**"))))
   (shell (current-buffer)))
 
 
@@ -260,16 +260,6 @@
   (add-hook 'before-save-hook 'gofmt-before-save)
   :ensure t)
 
-;; python
-(use-package pyenv-mode
-  :ensure t
-  :init
-  (add-to-list 'exec-path "~/.pyenv/shims")
-  ;; (add-to-list 'exec-path "~/.pyenv/bin/")
-  :config
-  (pyvenv-mode 1)
-  (pyvenv-tracking-mode 1))
-
 ;;auto-virtualenv
 (use-package auto-virtualenv
   :ensure t
@@ -278,8 +268,7 @@
     :ensure t)
   :config
   (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
-  (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv)  ;; If using projectile
-  )
+  (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv))
 
 ;; typescript
 (use-package typescript-mode

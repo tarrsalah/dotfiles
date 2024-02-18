@@ -128,8 +128,6 @@ Bold="\[$(tput bold)\]"
 export PS1="{\u}:${Bold}$\w\$(parse_git_branch)\nλ ${NC}"
 
 
-export TERM=xterm-256color
-
 # asdf
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
@@ -169,11 +167,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # cargo
 . "$HOME/.cargo/env"
 
-
-# pyenv
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
 
 # pnpm
 export PNPM_HOME="/home/tarrsalah/.local/share/pnpm"
