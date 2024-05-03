@@ -39,8 +39,6 @@
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
-
-;; white theme
 (set-face-background 'default "#ffffee")
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 (set-face-attribute 'default nil :font "MonacoB-12" :weight 'semi-bold)
@@ -81,16 +79,17 @@
   (package-install 'use-package))
 
 ;; dired
-(setq insert-directory-program "gls" dired-use-ls-dired t)
+(if (eq system-type 'darwin)
+    (setq insert-directory-program "gls" dired-use-ls-dired t))
+
 (setq dired-listing-switches "-al --group-directories-first")
 
 (add-hook 'dired-load-hook
-          '(lambda () (require 'dired-x)))
+          (lambda () (require 'dired-x)))
 
 (add-hook 'dired-mode-hook
       (lambda ()
         (dired-hide-details-mode)))
-
 
 (setq dired-omit-mode t)
 (setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|__pycache__|\\.php_cs.cache$")
@@ -103,18 +102,24 @@
      (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)))
 
 
-;;; multi-shell
-(require 'multi-shell)
+
+(defun creturn ()
+  (interactive)
+  (if (string-prefix-p "*shell" (buffer-name))
+      (previous-buffer)
+    (projectile-run-shell)))
+
 ;; global keys
 (global-set-key (kbd "C-x r r") 'my/helm-git-grep)
-(global-set-key (kbd "C-<return>") 'multi-shell-project)
-(global-set-key (kbd "M-0") 'projectile-repeat-last-command)
+(global-set-key (kbd "C-<return>") 'creturn)
 (global-set-key (kbd "C-.") 'end-of-buffer)
 (global-set-key (kbd "C-,") 'beginning-of-buffer)
+
 
 (use-package ace-window
   :ensure t
   :config)
+
 
 ;; ido-completing-read+
 (use-package ido-completing-read+
@@ -233,18 +238,20 @@
 
 
 ;; js-mode
-(add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode)
-(eval-after-load 'js-mode
-  '(progn
-        (define-key js-mode-map (kbd "M-.") nil))))
+(add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
+
+(add-hook 'js-mode-hook
+	(lambda()
+		(local-unset-key (kbd "M-."))))
 
 (setq js-indent-level 2)
 (setq typescript-indent-level 2)
 
-;; prettier
+(add-hook 'js-mode-hook 'eglot-ensure)
+(add-hook 'typescript-mode-hook 'eglot-ensure)
+
 (use-package prettier-js
     :ensure t)
-
 
 (use-package add-node-modules-path
   :custom
@@ -253,6 +260,10 @@
 (eval-after-load 'typescript-mode
   '(progn
      (add-hook 'typescript-mode-hook #'add-node-modules-path)))
+
+(eval-after-load 'js-mode
+    '(progn
+     (add-hook 'js-mode-hook #'add-node-modules-path)))
 
 ;; golang
 (use-package go-mode
