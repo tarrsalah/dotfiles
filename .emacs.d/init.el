@@ -270,6 +270,12 @@
   (add-hook 'python-mode-hook 'auto-virtualenv-set-virtualenv)
   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv))
 
+
+(use-package ruff-format
+    :ensure t
+    :config
+    (add-hook 'python-mode-hook 'ruff-format-on-save-mode))
+
 ;; typescript
 (use-package typescript-mode
   :ensure t
