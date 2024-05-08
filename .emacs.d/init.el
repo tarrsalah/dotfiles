@@ -239,7 +239,6 @@
 
 ;; js-mode
 (add-to-list 'auto-mode-alist '("\\.mjs\\'" . js-mode))
-
 (add-hook 'js-mode-hook
 	(lambda()
 		(local-unset-key (kbd "M-."))))

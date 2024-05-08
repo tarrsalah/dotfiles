@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: inline-func
-# key: =>
-# --
-($1) => {$2}
