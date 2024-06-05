@@ -39,9 +39,11 @@
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
-(set-face-background 'default "#ffffee")
+;; (set-face-background 'default "#ffffee")
+;; (load-theme 'base16-default-dark 'y)
+;; (load-theme 'twilight 'y)
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
-(set-face-attribute 'default nil :font "MonacoB-12" :weight 'semi-bold)
+(set-face-attribute 'default nil :font "MonacoB 12" :weight 'semi-bold)
 
 ;; compilation
 (require 'compile)
@@ -114,8 +116,7 @@
 (global-set-key (kbd "C-<return>") 'creturn)
 (global-set-key (kbd "C-.") 'end-of-buffer)
 (global-set-key (kbd "C-,") 'beginning-of-buffer)
-
-
+;; (global-display-line-numbers-mode)
 (use-package ace-window
   :ensure t
   :config)
@@ -427,3 +428,4 @@
 (provide 'init)
 ;;; init.el ends here
 (put 'erase-buffer 'disabled nil)
+(put 'downcase-region 'disabled nil)

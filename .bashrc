@@ -172,3 +172,6 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PNPM_HOME="/home/tarrsalah/.local/share/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
+
+# Scaleway CLI autocomplete initialization.
+eval "$(scw autocomplete script shell=bash)"
