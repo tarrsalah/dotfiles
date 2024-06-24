@@ -39,11 +39,12 @@
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
-;; (set-face-background 'default "#ffffee")
+(set-face-background 'default "#ffffee")
 ;; (load-theme 'base16-default-dark 'y)
 ;; (load-theme 'twilight 'y)
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 (set-face-attribute 'default nil :font "MonacoB 12" :weight 'semi-bold)
+;; (global-display-line-numbers-mode)
 
 ;; compilation
 (require 'compile)
@@ -68,7 +69,7 @@
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/") t)
 (add-to-list 'package-archives
-             '("org" . "http://orgmode.org/elpa/") t)
+             '("nongnu" . "https://elpa.nongnu.org/nongnu/"))
 
 (package-initialize)
 
@@ -99,24 +100,23 @@
 (setq dired-listing-switches
       "-laXGh1v --group-directories-first")
 
+(defun creturn ()
+  (interactive)
+  (if (string-prefix-p "*vterm" (buffer-name))
+      (previous-buffer)
+    (projectile-run-vterm)))
+
 (eval-after-load "dired"
   '(progn
      (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)))
 
-
-
-(defun creturn ()
-  (interactive)
-  (if (string-prefix-p "*shell" (buffer-name))
-      (previous-buffer)
-    (projectile-run-shell)))
 
 ;; global keys
 (global-set-key (kbd "C-x r r") 'my/helm-git-grep)
 (global-set-key (kbd "C-<return>") 'creturn)
 (global-set-key (kbd "C-.") 'end-of-buffer)
 (global-set-key (kbd "C-,") 'beginning-of-buffer)
-;; (global-display-line-numbers-mode)
+
 (use-package ace-window
   :ensure t
   :config)
@@ -226,7 +226,7 @@
   (add-hook 'after-init-hook #'global-flycheck-mode)
   (setq-default flycheck-disabled-checkers
                 (append flycheck-disabled-checkers
-                        '(javascript-jshint emacs-lisp-checkdoc haskell-stack-ghc haskell-ghc python-pylint python-pyright python-pycodestyle)))
+                        '(javascript-jshint emacs-lisp-checkdoc haskell-stack-ghc haskell-ghc python-pylint python-pyright python-pycodestyle go-golint)))
   (flycheck-add-mode 'javascript-eslint 'web-mode))
 
 
@@ -270,6 +270,8 @@
   :config
   (add-hook 'before-save-hook 'gofmt-before-save)
   :ensure t)
+
+(add-hook 'go-mode-hook 'eglot-ensure)
 
 ;;auto-virtualenv
 (use-package auto-virtualenv
