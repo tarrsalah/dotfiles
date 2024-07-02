@@ -29,7 +29,7 @@
       initial-major-mode 'text-mode)
 (define-coding-system-alias 'UTF-8 'utf-8)
 (setq server-socket-dir "~/.emacs.d/server")
-
+(windmove-default-keybindings)
 ;; Set path to dependencies
 (setq site-lisp-dir
       (expand-file-name "site-lisp" user-emacs-directory))
