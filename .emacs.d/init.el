@@ -114,9 +114,7 @@
 ;; global keys
 (global-set-key (kbd "C-x r r") 'my/helm-git-grep)
 (global-set-key (kbd "C-<return>") 'creturn)
-(global-set-key (kbd "C-.") 'end-of-buffer)
-(global-set-key (kbd "C-,") 'beginning-of-buffer)
-
+(global-set-key (kbd "C-n") 'completion-at-point)
 (use-package ace-window
   :ensure t
   :config)
@@ -150,20 +148,6 @@
   (lambda ()
     (set-face-attribute
      'helm-source-header nil :height 140 :background nil)))
-
-;; company
-(use-package company
-  :ensure t
-  :diminish company-mode
-  :init
-  (add-hook 'after-init-hook 'global-company-mode)
-  :config
-  (progn
-    (setq company-tooltip-limit 10)
-    (setq company-idle-delay 1)
-    (setq company-echo-delay 0)
-    (setq company-begin-commands '(self-insert-command)))
-  :bind (("M-n" . company-complete)))
 
 ;; projectile
 (use-package projectile
@@ -217,17 +201,6 @@
 (exec-path-from-shell-copy-env "GOPATH")
 (exec-path-from-shell-copy-env "GO111MODULE")
 
-
-;; flycheck
-(use-package flycheck
-  :diminish flycheck-mode
-  :ensure t
-  :config
-  (add-hook 'after-init-hook #'global-flycheck-mode)
-  (setq-default flycheck-disabled-checkers
-                (append flycheck-disabled-checkers
-                        '(javascript-jshint emacs-lisp-checkdoc haskell-stack-ghc haskell-ghc python-pylint python-pyright python-pycodestyle go-golint)))
-  (flycheck-add-mode 'javascript-eslint 'web-mode))
 
 
 (defun spawn-shell (name)
@@ -296,11 +269,6 @@
   (progn
     (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))))
 
-(use-package company :ensure t)
-(use-package flycheck :ensure t)
-
-;; aligns annotation to the right hand side
-(setq company-tooltip-align-annotations t)
 
 ;; erlang
 (use-package erlang
