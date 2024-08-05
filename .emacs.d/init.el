@@ -131,6 +131,7 @@
   :config
   (ido-ubiquitous-mode 1))
 
+
 ;; helm
 (use-package helm
   :ensure t
@@ -243,6 +244,15 @@
     '(progn
      (add-hook 'js-mode-hook #'add-node-modules-path)))
 
+
+;; typescript
+(use-package typescript-mode
+  :ensure t
+  :config
+  (progn
+    (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))))
+
+
 ;; golang
 (use-package go-mode
   :config
@@ -267,13 +277,7 @@
     :config
     (add-hook 'python-mode-hook 'ruff-format-on-save-mode))
 
-;; typescript
-(use-package typescript-mode
-  :ensure t
-  :config
-  (progn
-    (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))))
-
+(add-hook 'python-mode-hook 'eglot-ensure)
 
 ;; erlang
 (use-package erlang
