@@ -30,6 +30,11 @@
 (define-coding-system-alias 'UTF-8 'utf-8)
 (setq server-socket-dir "~/.emacs.d/server")
 (windmove-default-keybindings)
+
+
+;; disable eldoc minibuffer
+(setq eldoc-echo-area-use-multiline-p nil)
+
 ;; Set path to dependencies
 (setq site-lisp-dir
       (expand-file-name "site-lisp" user-emacs-directory))
