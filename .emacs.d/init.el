@@ -30,6 +30,7 @@
 (define-coding-system-alias 'UTF-8 'utf-8)
 (setq server-socket-dir "~/.emacs.d/server")
 (windmove-default-keybindings)
+;; (global-display-line-numbers-mode)
 
 
 ;; disable eldoc minibuffer
@@ -44,14 +45,18 @@
   (when (file-directory-p project)
     (add-to-list 'load-path project)))
 
-(set-face-background 'default "#ffffee")
-;; (load-theme 'base16-default-dark 'y)
-;; (load-theme 'twilight 'y)
-(add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
-(set-face-attribute 'default nil :font "MonacoB 12" :weight 'semi-bold)
-;; (global-display-line-numbers-mode)
 
-;; compilation
+;; Theme colors
+(set-face-background 'default "#ffffee")
+(add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
+
+(if (eq system-type 'darwin)
+    (set-face-attribute 'default nil :font "Monaco 15"))
+
+(if (eq system-type 'gnu/linux)
+    (set-face-attribute 'default nil :font "MonacoB 12" :weight 'semi-bold))
+
+;; Compilation
 (require 'compile)
 (setq compilation-always-kill t)
 (setq compilation-scroll-output t)
@@ -233,6 +238,7 @@
     :ensure t)
 
 (use-package add-node-modules-path
+  :ensure t
   :custom
     (add-node-modules-path-command '("pnpm bin")))
 
