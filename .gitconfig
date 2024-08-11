@@ -8,7 +8,7 @@
 [push]
 	default = current
 [core]
-	excludesfile = /home/tarrsalah/.gitignore_global
+	excludesfile = ~/.gitignore
 	editor = vim
 [pull]
 	default = current
