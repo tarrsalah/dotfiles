@@ -2,3 +2,6 @@
 !.emacs.d/init.el
 !.emacs.d/*-theme.el
 !.emacs.d/snippets
+
+
+/.gitconfig.d/work

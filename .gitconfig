@@ -1,6 +1,10 @@
 [user]
 	email = tarrsalah@gmail.com
 	name = Salah Eddine Taouririt
+
+[includeIf "gitdir:~/work/**"]
+    path = ~/src/dotfiles/.gitconfig.d/work
+
 [push]
 	default = current
 [core]
