@@ -22,9 +22,9 @@ set path+=**
 set wildmenu
 set statusline+=%F\ %l\:%c
 set wildmode=longest:full,full
-set clipboard=unnamedplus
 set wildoptions=pum
-
+set termguicolors
+set clipboard=unnamed
 
 highlight clear SignColumn
 highlight VertSplit cterm=NONE
