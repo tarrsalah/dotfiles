@@ -127,3 +127,5 @@ export PATH="$PATH:$HOME/go/bin"
 # Fix node
 export CXX=clang++
 export CC=clang
+export GPG_TTY=$(tty)
+

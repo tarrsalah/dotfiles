@@ -47,11 +47,11 @@
 
 
 ;; Theme colors
-(set-face-background 'default "#ffffee")
+;; (set-face-background 'default "#ffffee")
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 (if (eq system-type 'darwin)
-    (set-face-attribute 'default nil :font "Monaco 16"))
+    (set-face-attribute 'default nil :font "Monaco 15"))
 
 (if (eq system-type 'gnu/linux)
     (set-face-attribute 'default nil :font "MonacoB 12" :weight 'semi-bold))
@@ -65,15 +65,9 @@
 (add-to-list 'compilation-error-regexp-alist-alist
              '(elixir "^\s\\(.*\\):\\([0-9]+\\):" 1 2))
 
-(require 'ansi-color)
-(add-hook 'compilation-filter-hook
-    (lambda()
-      (ansi-color-apply-on-region compilation-filter-start (point))
-      (read-only-mode)))
 
 ;; packages
 (setq package-enable-at-startup nil)
-
 (require 'package)
 
 (add-to-list 'package-archives
@@ -110,12 +104,6 @@
 (setq dired-listing-switches
       "-laXGh1v --group-directories-first")
 
-(defun creturn ()
-  (interactive)
-  (if (string-prefix-p "*vterm" (buffer-name))
-      (previous-buffer)
-    (projectile-run-vterm)))
-
 (eval-after-load "dired"
   '(progn
      (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)))
@@ -123,18 +111,7 @@
 
 ;; global keys
 (global-set-key (kbd "C-x r r") 'my/helm-git-grep)
-(global-set-key (kbd "C-<return>") 'creturn)
 (global-set-key (kbd "C-n") 'completion-at-point)
-(use-package ace-window
-  :ensure t
-  :config)
-
-
-;; ido-completing-read+
-(use-package ido-completing-read+
-  :ensure t
-  :config
-  (ido-ubiquitous-mode 1))
 
 
 ;; helm
@@ -183,9 +160,9 @@
   (setq magit-completing-read-function 'magit-ido-completing-read))
 
 ;; popup kill ring
-(use-package popup-kill-ring
-  :ensure t
-  :bind (("M-y" . popup-kill-ring)))
+;; (use-package popup-kill-ring
+  ;; :ensure t
+  ;; :bind (("M-y" . popup-kill-ring)))
 
 ;; markdown
 (use-package markdown-mode
@@ -212,8 +189,6 @@
 (exec-path-from-shell-copy-env "GOPATH")
 (exec-path-from-shell-copy-env "GO111MODULE")
 
-
-
 (defun spawn-shell (name)
   "Invoke shell test"
   (interactive "MName of shell buffer to create: ")
@@ -234,6 +209,7 @@
 (add-hook 'js-mode-hook 'eglot-ensure)
 (add-hook 'typescript-mode-hook 'eglot-ensure)
 
+
 (use-package prettier-js
     :ensure t)
 
@@ -253,17 +229,39 @@
 
 ;; typescript
 (use-package typescript-mode
-  :ensure t
-  :config
-  (progn
-    (add-to-list 'auto-mode-alist '("\\.tsx\\'" . typescript-mode))))
+  :ensure t)
 
+(define-derived-mode typescriptreact-mode web-mode "TypescriptReact"
+  "A major mode for tsx.")
+
+(use-package typescript-mode
+  :mode (("\\.ts\\'" . typescript-mode)
+         ("\\.tsx\\'" . typescriptreact-mode)))
+
+(use-package eglot
+  :ensure t
+  :defer 3
+  :hook
+  ((js-mode
+    typescript-mode
+    typescriptreact-mode) . eglot-ensure)
+  :config
+  (cl-pushnew '((js-mode typescript-mode typescriptreact-mode) . ("typescript-language-server" "--stdio"))
+              eglot-server-programs
+              :test #'equal))
+
+(setopt eglot-events-buffer-size 0)
 
 ;; golang
 (use-package go-mode
   :config
   (add-hook 'before-save-hook 'gofmt-before-save)
   :ensure t)
+
+
+(setq-default eglot-workspace-configuration
+    '((:gopls .
+        ((buildFlags . ["--tags=integration"])))))
 
 (add-hook 'go-mode-hook 'eglot-ensure)
 
@@ -309,9 +307,9 @@
 (use-package web-mode
   :ensure t
   :custom
-  (web-mode-markup-indent-offset 2)
-  (web-mode-css-indent-offset 2)
-  (web-mode-code-indent-offset 2)
+  (web-mode-markup-indent-offset 4)
+  (web-mode-css-indent-offset 4)
+  (web-mode-code-indent-offset 4)
   :config
   (progn
     (setq web-mode-enable-auto-indentation nil)
