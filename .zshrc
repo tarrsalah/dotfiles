@@ -129,3 +129,5 @@ export CXX=clang++
 export CC=clang
 export GPG_TTY=$(tty)
 
+# mactex
+export PATH="/Library/TeX/texbin:$PATH"
