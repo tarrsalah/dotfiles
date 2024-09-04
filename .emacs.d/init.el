@@ -99,7 +99,7 @@
         (dired-hide-details-mode)))
 
 (setq dired-omit-mode t)
-(setq dired-omit-files "\\.pdf$\\|\\.pyc$\\|\\.tern-port$\\|__pycache__|\\.php_cs.cache$")
+(setq dired-omit-files "\\.pyc$\\|\\.tern-port$\\|__pycache__|\\.php_cs.cache$")
 (put 'dired-find-alternate-file 'disabled nil)
 (setq dired-listing-switches
       "-laXGh1v --group-directories-first")
@@ -261,7 +261,7 @@
 
 (setq-default eglot-workspace-configuration
     '((:gopls .
-        ((buildFlags . ["--tags=integration"])))))
+        ((buildFlags . ["--tags=integration,e2e"])))))
 
 (add-hook 'go-mode-hook 'eglot-ensure)
 
