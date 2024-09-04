@@ -395,6 +395,13 @@
 ;;; gdb
 (setq-default gdb-display-io-nopopup t)
 
+;; latex
+(add-hook 'LaTeX-mode-hook (lambda ()
+  (push
+    '("Latexmk" "latexmk -pdf %s" TeX-run-TeX nil t
+      :help "Run Latexmk on file")
+    TeX-command-list)))
+
 ;;; trun of debugging
 (setq debug-on-error nil)
 (setq debug-on-quit nil)
