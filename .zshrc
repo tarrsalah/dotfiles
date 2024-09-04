@@ -131,3 +131,6 @@ export GPG_TTY=$(tty)
 
 # mactex
 export PATH="/Library/TeX/texbin:$PATH"
+
+# pipx
+export PATH="$PATH:$HOME/.local/bin"
