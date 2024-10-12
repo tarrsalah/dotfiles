@@ -47,7 +47,7 @@
 
 
 ;; Theme colors
-;; (set-face-background 'default "#ffffee")
+(set-face-background 'default "#ffffee")
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 (if (eq system-type 'darwin)
@@ -246,9 +246,19 @@
     typescript-mode
     typescriptreact-mode) . eglot-ensure)
   :config
+  (cl-pushnew '((python-mode) . ("pylsp"))
+              eglot-server-programs)
   (cl-pushnew '((js-mode typescript-mode typescriptreact-mode) . ("typescript-language-server" "--stdio"))
               eglot-server-programs
               :test #'equal))
+
+
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               `((python-mode python-ts-mode) .
+		 ,(eglot-alternatives '("pylsp" "pyls" ("poetry" "run" "pyright-langserver" "--stdio")  ("pyright-langserver" "--stdio") "jedi-language-server")))))
+
+(setq elpy-rpc-virtualenv-path 'current)
 
 (setopt eglot-events-buffer-size 0)
 
