@@ -175,3 +175,7 @@ export PATH="$PNPM_HOME:$PATH"
 
 # Scaleway CLI autocomplete initialization.
 eval "$(scw autocomplete script shell=bash)"
+
+
+# pipx
+export PATH="$PATH:$HOME/.local/bin"
