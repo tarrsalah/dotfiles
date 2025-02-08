@@ -286,6 +286,14 @@
   (add-hook 'projectile-after-switch-project-hook 'auto-virtualenv-set-virtualenv))
 
 
+(defun creturn ()
+  (interactive)
+  (if (string-prefix-p "*vterm" (buffer-name))
+      (previous-buffer)
+    (projectile-run-vterm)))
+
+(global-set-key (kbd "C-<return>") 'creturn)
+
 (use-package ruff-format
     :ensure t
     :config
