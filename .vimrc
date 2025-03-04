@@ -3,7 +3,8 @@ filetype plugin on
 filetype indent on
 
 set mouse=a
-set number
+set title
+"" set number
 set ruler
 set encoding=utf-8
 set wrap
@@ -21,6 +22,7 @@ set updatetime=100
 set path+=**
 set wildmenu
 set statusline+=%F\ %l\:%c
+set laststatus=2
 set wildmode=longest:full,full
 set wildoptions=pum
 set termguicolors
@@ -47,6 +49,9 @@ call plug#end()
 
 
 let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
+let g:fzf_preview_window = []
+let g:fzf_layout = { 'down': '40%' }
+let g:netrw_banner = 0
 
 autocmd QuickFixCmdPost * nested cwindow 20 | redraw!
 autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
@@ -61,5 +66,5 @@ nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
 nnoremap <silent> <Leader>rg :Rg <C-R><C-W><CR>
 
 let g:black_virtualenv="/home/tarrsalah/.local/share/pipx/venvs/black"
-colorscheme industry
+colorscheme evening
 syntax off
