@@ -51,12 +51,12 @@
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 (if (eq system-type 'darwin)
-    (set-face-attribute 'default nil :font "Monaco 15"))
+    (set-face-attribute 'default nil :font "monaco 15"))
 
 (if (eq system-type 'gnu/linux)
-    (set-face-attribute 'default nil :font "MonacoB 12" :weight 'semi-bold))
+    (set-face-attribute 'default nil :font "monacob 12" :weight 'semi-bold))
 
-;; Compilation
+;; compilation
 (require 'compile)
 (setq compilation-always-kill t)
 (setq compilation-scroll-output t)

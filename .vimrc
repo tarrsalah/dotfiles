@@ -3,6 +3,7 @@ filetype plugin on
 filetype indent on
 
 set mouse=a
+set ttymouse=sgr
 set title
 "" set number
 set ruler
@@ -26,45 +27,37 @@ set laststatus=2
 set wildmode=longest:full,full
 set wildoptions=pum
 set termguicolors
-set clipboard=unnamed
+set clipboard=unnamedplus
 set backspace=indent,eol,start
+" set cursorline
+set grepprg=ag
 
 highlight clear SignColumn
 highlight VertSplit cterm=NONE
 
 call plug#begin()
-Plug 'jceb/vim-orgmode'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'hashivim/vim-terraform'
-Plug 'junegunn/vim-peekaboo'
-" Plug 'vim-airline/vim-airline'
-" Plug 'airblade/vim-gitgutter'
-" Plug 'prabirshrestha/vim-lsp' " async lsp support
-" Plug 'mattn/vim-lsp-settings' " lsp auto-configs
-" Plug 'prabirshrestha/asyncomplete.vim' " async completion
-" Plug 'prabirshrestha/asyncomplete-lsp.vim' " lsp source
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-dispatch'
 call plug#end()
 
-
-let g:lsp_diagnostics_enabled = 0         " disable diagnostics support
 let g:fzf_preview_window = []
-let g:fzf_layout = { 'down': '40%' }
 let g:netrw_banner = 0
 
-autocmd QuickFixCmdPost * nested cwindow 20 | redraw!
 autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd BufWritePre *.tf,*.tfvars TerraformFmt
+autocmd VimEnter * if argc() == 0 | Explore | endif
 autocmd QuickFixCmdPost *grep* cwindow
 
 let mapleader=" "
+vmap 4 $
 nmap <Leader><space> :noh<CR>
 nmap <C-p> :GFiles<CR>
 nmap <C-b> :Buffers<CR>
-nnoremap <silent> <Leader>ag :Ag <C-R><C-W><CR>
-nnoremap <silent> <Leader>rg :Rg <C-R><C-W><CR>
+nnoremap <C-j> :cnext<cr>
+nnoremap <C-k> :cprev<cr>
 
-let g:black_virtualenv="/home/tarrsalah/.local/share/pipx/venvs/black"
-colorscheme evening
 syntax off
