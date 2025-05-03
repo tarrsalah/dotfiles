@@ -29,22 +29,20 @@ set wildoptions=pum
 set termguicolors
 set clipboard=unnamedplus
 set backspace=indent,eol,start
-" set cursorline
-set grepprg=ag
+" set grepprg=ag
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class,*.jar
 
 highlight clear SignColumn
 highlight VertSplit cterm=NONE
 
 call plug#begin()
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'hashivim/vim-terraform'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-dispatch'
 call plug#end()
 
-let g:fzf_preview_window = []
 let g:netrw_banner = 0
 
 autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
@@ -55,9 +53,9 @@ autocmd QuickFixCmdPost *grep* cwindow
 let mapleader=" "
 vmap 4 $
 nmap <Leader><space> :noh<CR>
-nmap <C-p> :GFiles<CR>
-nmap <C-b> :Buffers<CR>
+nmap <C-b> :CtrlPBuffer<CR>
 nnoremap <C-j> :cnext<cr>
 nnoremap <C-k> :cprev<cr>
 
+colorscheme desert
 syntax off
