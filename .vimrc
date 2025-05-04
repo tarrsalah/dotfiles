@@ -30,6 +30,8 @@ set termguicolors
 set clipboard=unnamedplus
 set backspace=indent,eol,start
 " set grepprg=ag
+set grepprg=grep\ -rnI\ --exclude-dir=node_modules
+set foldcolumn=2
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class,*.jar
 
 highlight clear SignColumn
@@ -57,5 +59,5 @@ nmap <C-b> :CtrlPBuffer<CR>
 nnoremap <C-j> :cnext<cr>
 nnoremap <C-k> :cprev<cr>
 
-colorscheme desert
+colorscheme evening
 syntax off
