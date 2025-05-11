@@ -5,7 +5,8 @@ filetype indent on
 set mouse=a
 set ttymouse=sgr
 set title
-"" set number
+" set number
+" set relativenumber
 set ruler
 set encoding=utf-8
 set wrap
@@ -32,6 +33,8 @@ set backspace=indent,eol,start
 " set grepprg=ag
 set grepprg=grep\ -rnI\ --exclude-dir=node_modules
 set foldcolumn=2
+highlight FoldColumn guibg=#ffffdd
+
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class,*.jar
 
 highlight clear SignColumn
@@ -41,7 +44,7 @@ call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'hashivim/vim-terraform'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-dispatch'
 call plug#end()
 
@@ -59,5 +62,4 @@ nmap <C-b> :CtrlPBuffer<CR>
 nnoremap <C-j> :cnext<cr>
 nnoremap <C-k> :cprev<cr>
 
-colorscheme evening
 syntax off
