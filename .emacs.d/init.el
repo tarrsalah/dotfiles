@@ -47,7 +47,7 @@
 
 
 ;; Theme colors
-(set-face-background 'default "#ffffee")
+(set-face-background 'default "#ffffdd")
 (add-hook 'prog-mode-hook (lambda () (setq font-lock-defaults '(nil))))
 
 (if (eq system-type 'darwin)
@@ -108,10 +108,15 @@
   '(progn
      (define-key dired-mode-map [mouse-2] 'dired-mouse-find-file)))
 
+;; dabbrev
+(setq dabbrev-case-fold-search nil)
+(setq dabbrev-case-replace nil)
+
 
 ;; global keys
 (global-set-key (kbd "C-x r r") 'my/helm-git-grep)
 (global-set-key (kbd "C-n") 'completion-at-point)
+;; (global-set-key (kbd "C-n") 'dabbrev-completion)
 
 
 ;; helm
@@ -127,7 +132,6 @@
   "Helm git grep NOT-ALL."
   (interactive "P")
   (helm-grep-git-1 default-directory (null NOT-ALL)))
-
 
 (use-package helm-ag
     :ensure t)
