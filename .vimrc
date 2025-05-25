@@ -43,6 +43,7 @@ highlight VertSplit cterm=NONE
 call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-commentary'
 Plug 'hashivim/vim-terraform'
 " Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-dispatch'
