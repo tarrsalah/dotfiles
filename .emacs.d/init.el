@@ -115,8 +115,8 @@
 
 ;; global keys
 (global-set-key (kbd "C-x r r") 'my/helm-git-grep)
-(global-set-key (kbd "C-n") 'completion-at-point)
-;; (global-set-key (kbd "C-n") 'dabbrev-completion)
+;; (global-set-key (kbd "C-n") 'completion-at-point)
+(global-set-key (kbd "C-n") 'dabbrev-completion)
 
 
 ;; helm
