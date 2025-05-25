@@ -20,3 +20,6 @@
 
 # asdf
 .tool-versions
+
+#jupyter
+.ipynb_checkpoints/
