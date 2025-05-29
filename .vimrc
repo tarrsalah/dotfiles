@@ -2,40 +2,37 @@ set nocp
 filetype plugin on
 filetype indent on
 
-set mouse=a
-set ttymouse=sgr
-set title
-" set number
-" set relativenumber
-set ruler
-set encoding=utf-8
-set wrap
-set textwidth=80
-set tabstop=2
-set shiftwidth=2
 set autoindent
-set smartindent
-set noshiftround
-set incsearch
+set backspace=indent,eol,start
+set clipboard=unnamedplus
+set encoding=utf-8
+set grepprg=grep\ -rnI\ --exclude-dir=node_modules
+set hidden
 set hlsearch
-set nobackup
-set noswapfile
-set updatetime=100
-set path+=**
-set wildmenu
-set statusline+=%F\ %l\:%c
+set incsearch
 set laststatus=2
+set mouse=a
+set nobackup
+set noshiftround
+set noswapfile
+set path+=**
+set ruler
+set shiftwidth=2
+set smartindent
+set statusline+=%F\ %l\:%c
+set tabstop=2
+set termguicolors
+set textwidth=80
+set title
+set ttymouse=sgr
+set updatetime=100
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class,*.jar
+set wildmenu
 set wildmode=longest:full,full
 set wildoptions=pum
-set termguicolors
-set clipboard=unnamedplus
-set backspace=indent,eol,start
-" set grepprg=ag
-set grepprg=grep\ -rnI\ --exclude-dir=node_modules
-set foldcolumn=2
-highlight FoldColumn guibg=#ffffdd
+set wrap
+" highlight FoldColumn guibg=#ffffdd
 
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class,*.jar
 
 highlight clear SignColumn
 highlight VertSplit cterm=NONE
@@ -45,7 +42,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-commentary'
 Plug 'hashivim/vim-terraform'
-" Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-dispatch'
 call plug#end()
 
@@ -60,7 +56,13 @@ let mapleader=" "
 vmap 4 $
 nmap <Leader><space> :noh<CR>
 nmap <C-b> :CtrlPBuffer<CR>
+
 nnoremap <C-j> :cnext<cr>
 nnoremap <C-k> :cprev<cr>
+nnoremap <C-s> :w<cr>
 
+"" java
+autocmd FileType java nnoremap <buffer> <Leader>j :!mvn compile<CR>
+
+colorscheme industry
 syntax off
