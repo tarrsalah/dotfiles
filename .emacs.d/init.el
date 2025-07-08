@@ -30,6 +30,7 @@
 (define-coding-system-alias 'UTF-8 'utf-8)
 (setq server-socket-dir "~/.emacs.d/server")
 (windmove-default-keybindings)
+(setq confirm-kill-emacs #'y-or-n-p)
 ;; (global-display-line-numbers-mode)
 
 
