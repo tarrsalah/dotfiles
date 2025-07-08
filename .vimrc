@@ -40,7 +40,9 @@ highlight VertSplit cterm=NONE
 call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-eunuch'
 Plug 'hashivim/vim-terraform'
 Plug 'tpope/vim-dispatch'
 call plug#end()
@@ -64,5 +66,4 @@ nnoremap <C-s> :w<cr>
 "" java
 autocmd FileType java nnoremap <buffer> <Leader>j :!mvn compile<CR>
 
-colorscheme industry
 syntax off
