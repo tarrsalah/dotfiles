@@ -179,3 +179,5 @@ eval "$(scw autocomplete script shell=bash)"
 
 # pipx
 export PATH="$PATH:$HOME/.local/bin"
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+eval "$(fzf --bash)"
