@@ -8,6 +8,7 @@ set clipboard=unnamedplus
 set encoding=utf-8
 set grepprg=grep\ -rnI\ --exclude-dir=node_modules
 set hidden
+set history=1000
 set hlsearch
 set incsearch
 set laststatus=2
@@ -39,20 +40,20 @@ highlight VertSplit cterm=NONE
 
 call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'hashivim/vim-terraform'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
-Plug 'hashivim/vim-terraform'
-Plug 'tpope/vim-dispatch'
 call plug#end()
 
 let g:netrw_banner = 0
 
-autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd BufWritePre *.tf,*.tfvars TerraformFmt
-autocmd VimEnter * if argc() == 0 | Explore | endif
+autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
 autocmd QuickFixCmdPost *grep* cwindow
+autocmd VimEnter * if argc() == 0 | Explore | endif
 
 let mapleader=" "
 vmap 4 $
@@ -61,7 +62,6 @@ nmap <C-b> :CtrlPBuffer<CR>
 
 nnoremap <C-j> :cnext<cr>
 nnoremap <C-k> :cprev<cr>
-nnoremap <C-s> :w<cr>
 
 "" java
 autocmd FileType java nnoremap <buffer> <Leader>j :!mvn compile<CR>
