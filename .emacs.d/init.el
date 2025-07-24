@@ -297,7 +297,7 @@
       (previous-buffer)
     (projectile-run-vterm)))
 
-(global-set-key (kbd "C-<return>") 'creturn)
+(global-set-key (kbd "C-'") 'creturn)
 
 (use-package ruff-format
     :ensure t
@@ -421,7 +421,7 @@
 ;;; babel-mode
 (org-babel-do-load-languages
  'org-babel-load-languages
- '((js . t) (python . t)))
+ '((js . t) (python . t) (shell .t)))
 
 ;;; gdb
 (setq-default gdb-display-io-nopopup t)
