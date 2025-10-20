@@ -6,7 +6,6 @@ set autoindent
 set backspace=indent,eol,start
 set clipboard=unnamedplus
 set encoding=utf-8
-set grepprg=grep\ -rnI\ --exclude-dir=node_modules
 set hidden
 set history=1000
 set hlsearch
@@ -32,7 +31,6 @@ set wildmenu
 set wildmode=longest:full,full
 set wildoptions=pum
 set wrap
-" highlight FoldColumn guibg=#ffffdd
 
 
 highlight clear SignColumn
@@ -57,9 +55,13 @@ autocmd VimEnter * if argc() == 0 | Explore | endif
 
 let mapleader=" "
 vmap 4 $
-nmap <Leader><space> :noh<CR>
-nmap <C-b> :CtrlPBuffer<CR>
 
+nmap <Leader><space> :noh<CR>
+nmap <Leader>b :CtrlPBuffer<CR>
+nmap <Leader>p :CtrlP<CR>
+nmap <Leader>j :!!<CR>
+
+nnoremap <leader>h q:
 nnoremap <C-j> :cnext<cr>
 nnoremap <C-k> :cprev<cr>
 
