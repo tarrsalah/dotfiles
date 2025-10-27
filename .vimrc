@@ -21,7 +21,7 @@ set shiftwidth=2
 set smartindent
 set statusline+=%F\ %l\:%c
 set tabstop=2
-set termguicolors
+" set termguicolors
 set textwidth=80
 set title
 set ttymouse=sgr
@@ -64,8 +64,11 @@ nmap <Leader>j :!!<CR>
 nnoremap <leader>h q:
 nnoremap <C-j> :cnext<cr>
 nnoremap <C-k> :cprev<cr>
+nnoremap ; :
+nnoremap q; q:
 
 "" java
 autocmd FileType java nnoremap <buffer> <Leader>j :!mvn compile<CR>
 
 syntax off
+
