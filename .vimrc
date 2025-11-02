@@ -56,19 +56,21 @@ autocmd VimEnter * if argc() == 0 | Explore | endif
 let mapleader=" "
 vmap 4 $
 
-nmap <Leader><space> :noh<CR>
-nmap <Leader>b :CtrlPBuffer<CR>
-nmap <Leader>p :CtrlP<CR>
-nmap <Leader>j :!!<CR>
+nnoremap <Leader>b :CtrlPBuffer<CR>
+nnoremap <Leader>p :CtrlP<CR>
+
+nnoremap <Leader><space> :noh<CR>
+nnoremap <Leader>j :!!<CR>
 
 nnoremap <leader>h q:
-nnoremap <C-j> :cnext<cr>
-nnoremap <C-k> :cprev<cr>
 nnoremap ; :
 nnoremap q; q:
 
-"" java
-autocmd FileType java nnoremap <buffer> <Leader>j :!mvn compile<CR>
+nnoremap <C-j> :cnext<cr>
+nnoremap <C-k> :cprev<cr>
+
+inoremap jj <esc>
 
 syntax off
+
 
