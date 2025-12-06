@@ -47,6 +47,9 @@ Plug 'tpope/vim-surround'
 call plug#end()
 
 let g:netrw_banner = 0
+let g:netrw_sort_by = 'name'
+let g:netrw_sort_sequence = '[\/]$,*'
+let g:netrw_sort_direction = 'normal'
 
 autocmd BufWritePre *.tf,*.tfvars TerraformFmt
 autocmd FileType typescript setlocal shiftwidth=2 tabstop=2 softtabstop=0 expandtab
@@ -59,9 +62,6 @@ vmap 4 $
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>p :CtrlP<CR>
 
-nnoremap <Leader><space> :noh<CR>
-nnoremap <Leader>j :!!<CR>
-
 nnoremap <leader>h q:
 nnoremap ; :
 nnoremap q; q:
@@ -73,4 +73,7 @@ inoremap jj <esc>
 
 syntax off
 
-
+augroup fugitive_syntax
+  autocmd!
+  autocmd FileType fugitive,gitcommit,gitrebase,gitconfig,git if !exists('b:current_syntax') | runtime! syntax/<amatch>.vim | endif
+augroup END
