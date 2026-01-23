@@ -26,11 +26,13 @@ set textwidth=80
 set title
 set ttymouse=sgr
 set updatetime=100
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class,*.jar
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class,*.jar,*/.git/*
+set wildignorecase
 set wildmenu
 set wildmode=longest:full,full
 set wildoptions=pum
 set wrap
+set viminfo='500,<100,s50
 
 
 highlight clear SignColumn
@@ -40,7 +42,6 @@ call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -62,14 +63,11 @@ vmap 4 $
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>p :CtrlP<CR>
 
-nnoremap <leader>h q:
 nnoremap ; :
 nnoremap q; q:
 
 nnoremap <C-j> :cnext<cr>
 nnoremap <C-k> :cprev<cr>
-
-inoremap jj <esc>
 
 syntax off
 

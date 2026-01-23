@@ -176,8 +176,12 @@ export PATH="$PNPM_HOME:$PATH"
 # Scaleway CLI autocomplete initialization.
 eval "$(scw autocomplete script shell=bash)"
 
-
 # pipx
 export PATH="$PATH:$HOME/.local/bin"
+
+# fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 eval "$(fzf --bash)"
+
+# kubectl
+source <(kubectl completion bash)
