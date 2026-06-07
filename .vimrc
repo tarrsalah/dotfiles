@@ -26,17 +26,25 @@ set textwidth=80
 set title
 set ttymouse=sgr
 set updatetime=100
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.class,*.jar,*/.git/*
+set wildignore+=*.so,*.swp,*.zip,*.class,*.jar,*/.git/*,*/node_modules/*
 set wildignorecase
 set wildmenu
 set wildmode=longest:full,full
 set wildoptions=pum
-set wrap
+:set nowrap
 set viminfo='500,<100,s50
 
 
 highlight clear SignColumn
 highlight VertSplit cterm=NONE
+
+highlight Visual term=NONE cterm=NONE ctermbg=240 guibg=#444444
+highlight Search term=NONE cterm=NONE ctermfg=0 ctermbg=220 guifg=#000000 guibg=#ffd75f
+highlight IncSearch term=NONE cterm=NONE ctermfg=0 ctermbg=45 guifg=#000000 guibg=#00d7ff
+highlight CurSearch term=NONE cterm=NONE ctermfg=0 ctermbg=45 guifg=#000000 guibg=#00d7ff
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
 
 call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
@@ -70,8 +78,3 @@ nnoremap <C-j> :cnext<cr>
 nnoremap <C-k> :cprev<cr>
 
 syntax off
-
-augroup fugitive_syntax
-  autocmd!
-  autocmd FileType fugitive,gitcommit,gitrebase,gitconfig,git if !exists('b:current_syntax') | runtime! syntax/<amatch>.vim | endif
-augroup END
