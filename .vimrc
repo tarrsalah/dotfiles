@@ -53,6 +53,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'yegappan/mru'
 call plug#end()
 
 let g:netrw_banner = 0
@@ -70,6 +71,7 @@ vmap 4 $
 
 nnoremap <Leader>b :CtrlPBuffer<CR>
 nnoremap <Leader>p :CtrlP<CR>
+nnoremap <Leader>h :MRUToggle<CR>
 
 nnoremap ; :
 nnoremap q; q:
