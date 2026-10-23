@@ -17,10 +17,10 @@ set noshiftround
 set noswapfile
 set path+=**
 set ruler
-set shiftwidth=2
 set smartindent
 set statusline+=%F\ %l\:%c
-set tabstop=2
+set shiftwidth=4
+set tabstop=4
 " set termguicolors
 set textwidth=80
 set title
@@ -50,9 +50,7 @@ call plug#begin()
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'hashivim/vim-terraform'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
 Plug 'yegappan/mru'
 call plug#end()
 
@@ -79,4 +77,4 @@ nnoremap q; q:
 nnoremap <C-j> :cnext<cr>
 nnoremap <C-k> :cprev<cr>
 
-syntax off
+syntax on
